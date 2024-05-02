@@ -1,15 +1,31 @@
-import React from 'react'
-import { OrbitControls } from '@react-three/drei';
+import React, { useState } from 'react'
+import { Html, OrbitControls } from '@react-three/drei';
 import gridImg from './assets/grid.png';
 import { useLoader } from '@react-three/fiber';
-import { TextureLoader, AxesHelper, DoubleSide } from 'three';
+import { TextureLoader, axesHelper, DoubleSide } from 'three';
+import { Button } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 
 
 const Main = () => {
+    const [cube, setCube] = useState(true);
+    // delete modal
+    const [delModal, setDelModal] = useState(false);
+
+
 
     // plane grid texture
     const grid = useLoader(TextureLoader, gridImg);
 
+    // delete mesh
+    const deleteCube = () => {
+     setDelModal(true);
+    }
+
+    const deleteMesh = () => {
+        setCube(false);
+        setDelModal(false);
+    }
 
   return (
     <>
@@ -34,14 +50,22 @@ const Main = () => {
 
      <mesh receiveShadow position-y={ - 1 } rotation-x={ - Math.PI * 0.5 } scale={ 20 } >
             <planeGeometry  />
-            <meshStandardMaterial map = {grid}  color = '#636363' side={DoubleSide} />
-            <axesHelper />
+            <meshStandardMaterial map = {grid}  color = '#636363' side={DoubleSide}  />
+           <axesHelper />
         </mesh>
 
-        <mesh position={ [0, -1, 0] } scale = {1.5}>
+{cube &&  <mesh position={ [0, 0, 0] } scale = {1.5} onClick={deleteCube}>
             <boxGeometry />
             <meshStandardMaterial />
-        </mesh>
+        </mesh> }
+
+        {delModal && <Html >
+                    <div className='bg-gray-700 text-white p-6 rounded-md shadow-lg flex flex-col gap-4'>
+                        <span>OK?</span>
+                        <Button className='flex gap-4' variant='contained' onClick={deleteMesh}>Delete? <CloseIcon /></Button>
+                    </div>
+               </Html>}
+       
     </>
   )
 }
