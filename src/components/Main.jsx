@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Html, OrbitControls } from '@react-three/drei';
-import gridImg from './assets/grid.png';
+import gridImg from '../assets/grid.png';
 import { useLoader } from '@react-three/fiber';
-import { TextureLoader, axesHelper, DoubleSide } from 'three';
+import { TextureLoader, axesHelper, DoubleSide, TorusGeometry } from 'three';
 import { Button } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+import { MeshContext } from '../context/meshContext';
 
 
 const Main = () => {
@@ -17,6 +18,10 @@ const Main = () => {
     // plane grid texture
     const grid = useLoader(TextureLoader, gridImg);
 
+    // global states
+    const { torus, sphere, setSphere, setTorus, box , setBox} = useContext(MeshContext);
+
+
     // delete mesh
     const deleteCube = () => {
      setDelModal(true);
@@ -25,6 +30,10 @@ const Main = () => {
     const deleteMesh = () => {
         setCube(false);
         setDelModal(false);
+        setTorus(false);
+        setSphere(false);
+        setBox(false);
+        
     }
 
   return (
@@ -55,9 +64,29 @@ const Main = () => {
         </mesh>
 
 {cube &&  <mesh position={ [0, 0, 0] } scale = {1.5} onClick={deleteCube}>
-            <boxGeometry />
+           <boxGeometry /> 
             <meshStandardMaterial />
         </mesh> }
+
+        {torus && (
+        <mesh position={[0, 0, 0]} scale={1.5} onClick={deleteCube}>
+           <torusGeometry />
+          <meshStandardMaterial  />
+        </mesh>
+      )}
+      {sphere && (
+        <mesh position={[0, 0, 0]} scale={1.5} onClick={deleteCube}>
+            <sphereGeometry />
+          <meshStandardMaterial />
+        </mesh>
+      )}
+
+{box && (
+        <mesh position={[0, 0, 0]} scale={1.5} onClick={deleteCube}>
+            <boxGeometry />
+          <meshStandardMaterial />
+        </mesh>
+      )}
 
         {delModal && <Html >
                     <div className='bg-gray-700 text-white p-6 rounded-md shadow-lg flex flex-col gap-4'>

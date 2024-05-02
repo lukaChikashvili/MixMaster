@@ -1,5 +1,6 @@
 import { Canvas } from "@react-three/fiber";
 import Main from "./components/Main";
+import SideBar from "./components/SideBar";
 
 
 function App() {
@@ -11,6 +12,10 @@ function App() {
          <Canvas>
            <Main />
          </Canvas>
+
+         <div>
+            <SideBar />
+         </div>
     </div>
   );
 }
