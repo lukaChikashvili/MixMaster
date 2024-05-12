@@ -4,7 +4,8 @@ import { HexColorPicker } from 'react-colorful';
 
 const Right = () => {
  
-  const { updateMeshColor, meshColor, setMetalness, setRoughness, updatePlaneColor, planeColor } = useContext(MeshContext);
+  const { updateMeshColor, meshColor, setMetalness, setRoughness, updatePlaneColor, planeColor, setPositionX,
+          setPositionY, setPositionZ } = useContext(MeshContext);
 
   const [showRGB, setShowRGB] = useState(false);
   const [planeRgb, setPlaneRgb] = useState(false);
@@ -75,6 +76,27 @@ const Right = () => {
             <HexColorPicker color = {planeColor} onChange={updatePlaneColor} />
           </div>
        )}
+
+
+       <div className='flex flex-col gap-4'>
+       <h1 className='text-white p-6 cursor-pointer text-xl'>control mesh size</h1>
+       <div className='flex gap-4'>
+       <h2 className='text-white  underline underline-offset-4'>Position X: </h2>
+       <input type='number'  className='w-24 rounded-md outline-none' onChange={(e) => setPositionX(e.target.value)}/>
+       </div>
+
+       <div className='flex gap-4'>
+       <h2 className='text-white  underline underline-offset-4'>Position Y: </h2>
+       <input type='number'  className='w-24 rounded-md outline-none' onChange={(e) => setPositionY(e.target.value)}/>
+       </div>
+
+       <div className='flex gap-4'>
+       <h2 className='text-white  underline underline-offset-4'>Position Z: </h2>
+       <input type='number'  className='w-24 rounded-md outline-none' onChange={(e) => setPositionZ(e.target.value)}/>
+       </div>
+       
+
+       </div>
 
 
 

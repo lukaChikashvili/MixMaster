@@ -19,7 +19,8 @@ const Main = () => {
     const grid = useLoader(TextureLoader, gridImg);
 
     // global states
-    const { torus, sphere, setSphere, setTorus, box , setBox, plane, setPlane, meshColor, metalness, roughness, planeColor} = useContext(MeshContext);
+    const { torus, sphere, setSphere, setTorus, box , setBox, plane, setPlane,
+       meshColor, metalness, roughness, planeColor, positionX, positionY, positionZ} = useContext(MeshContext);
 
 
     // delete mesh
@@ -65,7 +66,10 @@ const Main = () => {
            <axesHelper />
         </mesh>
 
-{cube &&  <mesh position={ [0, 0, 0] } scale = {1.5} onClick={deleteCube}>
+{cube &&  <mesh position-x={ positionX } 
+                position-y = {positionY} 
+                position-z = {positionZ}
+                scale = {1.5} onClick={deleteCube}>
            <boxGeometry /> 
             <meshStandardMaterial 
                    color = {meshColor} 
