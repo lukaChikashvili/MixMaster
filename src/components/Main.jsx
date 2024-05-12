@@ -19,7 +19,7 @@ const Main = () => {
     const grid = useLoader(TextureLoader, gridImg);
 
     // global states
-    const { torus, sphere, setSphere, setTorus, box , setBox, plane, setPlane, meshColor} = useContext(MeshContext);
+    const { torus, sphere, setSphere, setTorus, box , setBox, plane, setPlane, meshColor, metalness, roughness} = useContext(MeshContext);
 
 
     // delete mesh
@@ -67,33 +67,36 @@ const Main = () => {
 
 {cube &&  <mesh position={ [0, 0, 0] } scale = {1.5} onClick={deleteCube}>
            <boxGeometry /> 
-            <meshStandardMaterial color = {meshColor} />
+            <meshStandardMaterial 
+                   color = {meshColor} 
+                   metalness={metalness}
+                   roughness={roughness} />
         </mesh> }
 
         {torus && (
         <mesh position={[0, 0, 0]} scale={1.5} onClick={deleteCube}>
            <torusGeometry />
-          <meshStandardMaterial  />
+          <meshStandardMaterial color = {meshColor} />
         </mesh>
       )}
       {sphere && (
         <mesh position={[0, 0, 0]} scale={1.5} onClick={deleteCube}>
             <sphereGeometry />
-          <meshStandardMaterial />
+          <meshStandardMaterial color = {meshColor}/>
         </mesh>
       )}
 
 {box && (
         <mesh position={[0, 0, 0]} scale={1.5} onClick={deleteCube}>
             <boxGeometry />
-          <meshStandardMaterial />
+          <meshStandardMaterial color = {meshColor}/>
         </mesh>
       )}
 
 {plane && (
         <mesh position={[0, 0, 0]}  scale={1.5} onClick={deleteCube}>
             <planeGeometry />
-          <meshStandardMaterial />
+          <meshStandardMaterial color = {meshColor}/>
         </mesh>
       )}
 
