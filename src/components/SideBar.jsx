@@ -14,7 +14,7 @@ const SideBar = () => {
     const [meshModal, setMeshModal] = useState(false);
 
  // use context
- const { setTorus, setSphere, setBox } = useContext(MeshContext);
+ const { setTorus, setSphere, setBox, setPlane } = useContext(MeshContext);
 
  const showTorus = () => {
     setTorus(true);
@@ -31,7 +31,7 @@ const SideBar = () => {
                <span className='text-center'>Cube</span>
                </div>
 
-               <div className='flex flex-col items-center  gap-4'>
+               <div className='flex flex-col items-center  gap-4' onClick={() => setPlane(true)}>
                <img src = {square} className='w-24' />
                <span className='text-center'>Plane</span>
                </div>
@@ -45,6 +45,8 @@ const SideBar = () => {
                <img src = {torusImg} className='w-24'  />
                <span className='text-center'>Torus</span>
                </div>
+
+             
             </div>}
       </div>
     </div>
