@@ -1,14 +1,18 @@
 import React, { useContext, useState } from 'react'
 import { MeshContext } from '../context/meshContext'
 import { HexColorPicker } from 'react-colorful';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 const Right = () => {
  
   const { updateMeshColor, meshColor, setMetalness, setRoughness, updatePlaneColor, planeColor, setPositionX,
-          setPositionY, setPositionZ } = useContext(MeshContext);
+          setPositionY, setPositionZ, setScaleX, setScaleY, setScaleZ } = useContext(MeshContext);
 
   const [showRGB, setShowRGB] = useState(false);
   const [planeRgb, setPlaneRgb] = useState(false);
+  
+  const [location, setLocation] = useState(false);
+  const [scale, setScale] = useState(false);
 
 
   const handleColorChange = (color) => {
@@ -20,7 +24,7 @@ const Right = () => {
 
   }
   return (
-    <div className='absolute right-12'>
+    <div className='absolute right-4'>
        <h1 className='text-white p-6 cursor-pointer text-xl'>Choose mesh material</h1>
        <div className='flex gap-4 pb-6'>
           <div className='w-6 h-6 rounded-full bg-red-500 border-2 cursor-pointer duration-500 ease-in hover:border-white' onClick={() => handleColorChange('red')} ></div>
@@ -79,27 +83,52 @@ const Right = () => {
 
 
        <div className='flex flex-col gap-4'>
-       <h1 className='text-white p-6 cursor-pointer text-xl'>control mesh size</h1>
-       <div className='flex gap-4'>
-       <h2 className='text-white  underline underline-offset-4'>Position X: </h2>
-       <input type='number'  className='w-24 rounded-md outline-none' onChange={(e) => setPositionX(e.target.value)}/>
+       <h1 className='text-white mt-8 cursor-pointer text-xl ' onClick={() => setLocation(!location)}>control mesh location <ArrowDropDownIcon /></h1>
+{location && (
+<>
+<div className='flex gap-4'>
+<h2 className='text-white  underline underline-offset-4'>Position X: </h2>
+<input type='number'  className='w-24 rounded-md outline-none' onChange={(e) => setPositionX(e.target.value)}/>
+</div>
+
+<div className='flex gap-4'>
+<h2 className='text-white  underline underline-offset-4'>Position Y: </h2>
+<input type='number'  className='w-24 rounded-md outline-none' onChange={(e) => setPositionY(e.target.value)}/>
+</div>
+
+<div className='flex gap-4'>
+<h2 className='text-white  underline underline-offset-4'>Position Z: </h2>
+<input type='number'  className='w-24 rounded-md outline-none' onChange={(e) => setPositionZ(e.target.value)}/>
+</div>
+</>
+)}
+       
+      
+       </div>
+
+       <h1 className='text-white mt-4  cursor-pointer text-xl' onClick={() => setScale(!scale)}>control mesh scale <ArrowDropDownIcon /></h1>
+
+{scale && (
+  <div className='flex flex-col gap-4 pt-4'>
+
+   <div className='flex gap-4'>
+       <h2 className='text-white  underline underline-offset-4'>Scale X: </h2>
+       <input type='number'  className='w-24 rounded-md outline-none' onChange={(e) => setScaleX(e.target.value)}/>
        </div>
 
        <div className='flex gap-4'>
-       <h2 className='text-white  underline underline-offset-4'>Position Y: </h2>
-       <input type='number'  className='w-24 rounded-md outline-none' onChange={(e) => setPositionY(e.target.value)}/>
+       <h2 className='text-white  underline underline-offset-4'>Scale Y: </h2>
+       <input type='number'  className='w-24 rounded-md outline-none' onChange={(e) => setScaleY(e.target.value)}/>
        </div>
 
        <div className='flex gap-4'>
-       <h2 className='text-white  underline underline-offset-4'>Position Z: </h2>
-       <input type='number'  className='w-24 rounded-md outline-none' onChange={(e) => setPositionZ(e.target.value)}/>
+       <h2 className='text-white  underline underline-offset-4'>Scale Z: </h2>
+       <input type='number'  className='w-24 rounded-md outline-none' onChange={(e) => setScaleZ(e.target.value)}/>
        </div>
        
-
-       </div>
-
-
-
+  </div>
+)}
+      
     </div>
   )
 }

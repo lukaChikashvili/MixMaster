@@ -16,9 +16,15 @@ const MeshProvider = ({children}) => {
     const [roughness, setRoughness] = useState(0);
     const [planeColor, setPlaneColor] = useState('#363636');
 
+    // mesh position
     const [positionX, setPositionX] = useState(0);
     const [positionY, setPositionY] = useState(0);
     const [positionZ, setPositionZ] = useState(0);
+
+    // mesh scale
+    const [scaleX, setScaleX] = useState(1);
+    const [scaleY, setScaleY] = useState(1);
+    const [scaleZ, setScaleZ] = useState(1);
 
     const updateMeshColor = (color) => {
        setMeshColor(color);
@@ -31,7 +37,8 @@ const MeshProvider = ({children}) => {
     return (
         <MeshContext.Provider value={{planeColor, updatePlaneColor, roughness, setRoughness, 
             torus, setTorus, sphere, setSphere, box, setBox, plane, setPlane, meshColor, 
-            updateMeshColor, metalness, setMetalness, positionX, setPositionX, positionY, setPositionY, positionZ, setPositionZ}}
+            updateMeshColor, metalness, setMetalness, positionX, setPositionX, positionY, setPositionY,
+             positionZ, setPositionZ, scaleX, setScaleX, scaleY, setScaleY, scaleZ, setScaleZ}}
         >
        {children}
        </MeshContext.Provider>
