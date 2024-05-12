@@ -19,7 +19,7 @@ const Main = () => {
     const grid = useLoader(TextureLoader, gridImg);
 
     // global states
-    const { torus, sphere, setSphere, setTorus, box , setBox, plane, setPlane, meshColor, metalness, roughness} = useContext(MeshContext);
+    const { torus, sphere, setSphere, setTorus, box , setBox, plane, setPlane, meshColor, metalness, roughness, planeColor} = useContext(MeshContext);
 
 
     // delete mesh
@@ -61,7 +61,7 @@ const Main = () => {
 
      <mesh receiveShadow position-y={ - 1 } rotation-x={ - Math.PI * 0.5 } scale={ 20 } >
             <planeGeometry  />
-            <meshStandardMaterial map = {grid}  color = '#636363' side={DoubleSide}  />
+            <meshStandardMaterial map = {grid}  color = {planeColor} side={DoubleSide}  />
            <axesHelper />
         </mesh>
 
@@ -76,27 +76,39 @@ const Main = () => {
         {torus && (
         <mesh position={[0, 0, 0]} scale={1.5} onClick={deleteCube}>
            <torusGeometry />
-          <meshStandardMaterial color = {meshColor} />
+          <meshStandardMaterial 
+                  color = {meshColor}
+                  metalness={metalness}
+                  roughness={roughness} />
         </mesh>
       )}
       {sphere && (
         <mesh position={[0, 0, 0]} scale={1.5} onClick={deleteCube}>
             <sphereGeometry />
-          <meshStandardMaterial color = {meshColor}/>
+          <meshStandardMaterial 
+                   color = {meshColor}
+                   metalness={metalness}
+                   roughness={roughness}/>
         </mesh>
       )}
 
 {box && (
         <mesh position={[0, 0, 0]} scale={1.5} onClick={deleteCube}>
             <boxGeometry />
-          <meshStandardMaterial color = {meshColor}/>
+          <meshStandardMaterial 
+                     color = {meshColor}
+                     metalness={metalness}
+                     roughness={roughness}/>
         </mesh>
       )}
 
 {plane && (
         <mesh position={[0, 0, 0]}  scale={1.5} onClick={deleteCube}>
             <planeGeometry />
-          <meshStandardMaterial color = {meshColor}/>
+          <meshStandardMaterial 
+                    color = {meshColor}
+                    metalness={metalness}
+                    roughness={roughness}/>
         </mesh>
       )}
 

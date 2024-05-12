@@ -14,12 +14,19 @@ const MeshProvider = ({children}) => {
     const [meshColor, setMeshColor] = useState(null);
     const [metalness, setMetalness] = useState(0);
     const [roughness, setRoughness] = useState(0);
+    const [planeColor, setPlaneColor] = useState('#363636');
+     
 
     const updateMeshColor = (color) => {
        setMeshColor(color);
     }
+
+    const updatePlaneColor = (color) => {
+      setPlaneColor(color);
+    }
+
     return (
-        <MeshContext.Provider value={{roughness, setRoughness, torus, setTorus, sphere, setSphere, box, setBox, plane, setPlane, meshColor, updateMeshColor, metalness, setMetalness}}
+        <MeshContext.Provider value={{planeColor, updatePlaneColor, roughness, setRoughness, torus, setTorus, sphere, setSphere, box, setBox, plane, setPlane, meshColor, updateMeshColor, metalness, setMetalness}}
         >
        {children}
        </MeshContext.Provider>
