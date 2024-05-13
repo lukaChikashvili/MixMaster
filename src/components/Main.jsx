@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
-import { Html, OrbitControls } from '@react-three/drei';
+import { Html, OrbitControls, useMatcapTexture } from '@react-three/drei';
 import gridImg from '../assets/grid.png';
 import { useLoader } from '@react-three/fiber';
-import { TextureLoader, axesHelper, DoubleSide } from 'three';
+import { TextureLoader, axesHelper, DoubleSide, MeshMatcapMaterial } from 'three';
 import { Button } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { MeshContext } from '../context/meshContext';
@@ -22,7 +22,7 @@ const Main = () => {
     // global states
     const { torus, sphere, setSphere, setTorus, box , setBox, plane, setPlane,
        meshColor, metalness, roughness, planeColor, positionX, positionY, positionZ, scaleX, 
-       scaleY, scaleZ, rotateX, rotateY, rotateZ, duplicatedMesh, setArrowPressed} = useContext(MeshContext);
+       scaleY, scaleZ, rotateX, rotateY, rotateZ, duplicatedMesh, setArrowPressed, selectedTexture} = useContext(MeshContext);
 
 
          // right arrow click
@@ -30,7 +30,11 @@ const Main = () => {
     const leftClick = useKeyPress('ArrowLeft');
     const upClick = useKeyPress('ArrowUp');
     const downClick = useKeyPress('ArrowDown');
-
+    const s = useKeyPress('s');
+    const x = useKeyPress('x');
+    const y = useKeyPress('y');
+    const z = useKeyPress('z');
+    const zero = useKeyPress('0');
   
     let meshRef = useRef();
 
@@ -66,9 +70,61 @@ const Main = () => {
         }
      }, [downClick]);
     
+    // scale
+    useEffect(() => {
+      if(s) {
+        meshRef.current.scale.x += 0.5;
+        meshRef.current.scale.y += 0.5;
+        meshRef.current.scale.z += 0.5;
+        setArrowPressed('S');
+      }
+   }, [s]);
   
+        // scale x
+        useEffect(() => {
+          if(x) {
+            meshRef.current.scale.x += 0.5;
+         
+            setArrowPressed('X');
+          }
+       }, [x]);
+      
+       // back to normal
+       useEffect(() => {
+        if(zero) {
+          meshRef.current.scale.x = 1;
+          meshRef.current.scale.y = 1;
+          meshRef.current.scale.z = 1;
+          meshRef.current.position.x = 0;
+          meshRef.current.position.y = 0;
+          meshRef.current.position.z = 0;
+       
+          setArrowPressed('0');
+        }
+     }, [zero]);
     
-  
+       
+       // scale y
+       useEffect(() => {
+        if(y) {
+       
+          meshRef.current.scale.y += 0.5;
+       
+       
+          setArrowPressed('Y');
+        }
+     }, [y]);
+    
+        // scale z
+        useEffect(() => {
+          if(z) {
+         
+            meshRef.current.scale.z += 0.5;
+         
+            setArrowPressed('Z');
+          }
+       }, [z]);
+      
  
     
 
@@ -87,6 +143,11 @@ const Main = () => {
 
         
     }
+
+    const [ matcap ] = useMatcapTexture(selectedTexture, 256);
+    
+
+
 
   return (
     <>
@@ -125,12 +186,18 @@ const Main = () => {
                 rotation-y = {rotateY}
                 rotation-z = {rotateZ}
                 onClick={deleteCube} 
-                ref = {meshRef}>
+                ref = {meshRef}
+                
+                >
            <boxGeometry /> 
+           {selectedTexture ? (<meshMatcapMaterial matcap={matcap} />) :
             <meshStandardMaterial 
                    color = {meshColor} 
                    metalness={metalness}
-                   roughness={roughness} />
+                   roughness={roughness} 
+                   
+                   />
+  }
         </mesh>
           
       

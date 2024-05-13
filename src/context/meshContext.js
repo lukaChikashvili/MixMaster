@@ -37,6 +37,8 @@ const MeshProvider = ({children}) => {
      // displaying keys
  const [arrowPressed, setArrowPressed] = useState('');
 
+ const [selectedTexture, setSelectedTexture] = useState(null);
+
 
     const addDuplicatedMesh = (mesh) => {
        setDuplicatedMesh((prev) => [...prev, mesh]);
@@ -58,7 +60,7 @@ const MeshProvider = ({children}) => {
             updateMeshColor, metalness, setMetalness, positionX, setPositionX, positionY, setPositionY,
              positionZ, setPositionZ, scaleX, setScaleX, scaleY, setScaleY, scaleZ, setScaleZ, rotateX,
               rotateY, rotateZ, setRotateX, setRotateY, setRotateZ, duplicatedMesh, addDuplicatedMesh,
-            arrowPressed, setArrowPressed}}
+            arrowPressed, setArrowPressed, selectedTexture, setSelectedTexture}}
         >
        {children}
        </MeshContext.Provider>
