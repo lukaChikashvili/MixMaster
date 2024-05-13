@@ -30,7 +30,7 @@ const Right = () => {
 
   const handleDuplicate = () => {
     addDuplicatedMesh({
-      position: [0, 3, 0],
+      position: [2, 3, 0],
       geometry: <boxGeometry />,
       material: (
         <meshStandardMaterial

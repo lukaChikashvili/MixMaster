@@ -17,9 +17,9 @@ const MeshProvider = ({children}) => {
     const [planeColor, setPlaneColor] = useState('#363636');
 
     // mesh position
-    const [positionX, setPositionX] = useState(0);
-    const [positionY, setPositionY] = useState(0);
-    const [positionZ, setPositionZ] = useState(0);
+    const [positionX, setPositionX] = useState(-0.5);
+    const [positionY, setPositionY] = useState(-0.5);
+    const [positionZ, setPositionZ] = useState(-0.5);
 
     // mesh scale
     const [scaleX, setScaleX] = useState(1);

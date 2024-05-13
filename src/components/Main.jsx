@@ -1,17 +1,21 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { Html, OrbitControls } from '@react-three/drei';
 import gridImg from '../assets/grid.png';
 import { useLoader } from '@react-three/fiber';
-import { TextureLoader, axesHelper, DoubleSide, TorusGeometry } from 'three';
+import { TextureLoader, axesHelper, DoubleSide } from 'three';
 import { Button } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { MeshContext } from '../context/meshContext';
+import { useKeyPress  } from 'react-use';
+
 
 
 const Main = () => {
     const [cube, setCube] = useState(true);
     // delete modal
     const [delModal, setDelModal] = useState(false);
+
+  
 
 
 
@@ -23,6 +27,49 @@ const Main = () => {
        meshColor, metalness, roughness, planeColor, positionX, positionY, positionZ, scaleX, 
        scaleY, scaleZ, rotateX, rotateY, rotateZ, duplicatedMesh} = useContext(MeshContext);
 
+
+         // right arrow click
+    const rightClick = useKeyPress('ArrowRight');
+    const leftClick = useKeyPress('ArrowLeft');
+    const upClick = useKeyPress('ArrowUp');
+    const downClick = useKeyPress('ArrowDown');
+
+  
+    let meshRef = useRef();
+
+    // move right
+   useEffect(() => {
+      if(rightClick) {
+        meshRef.current.position.x += 0.5;
+      }
+   }, [rightClick]);
+
+// move left
+   useEffect(() => {
+      if(leftClick) {
+        meshRef.current.position.x -= 0.5;
+      }
+   }, [leftClick]);
+
+   // move up
+   useEffect(() => {
+    if(upClick) {
+      meshRef.current.position.y += 0.5;
+    }
+ }, [upClick]);
+
+      // move down
+      useEffect(() => {
+        if(downClick) {
+          meshRef.current.position.y -= 0.5;
+        }
+     }, [downClick]);
+    
+  
+    
+  
+ 
+    
 
     // delete mesh
     const deleteCube = () => {
@@ -76,7 +123,8 @@ const Main = () => {
                 rotation-x = {rotateX}
                 rotation-y = {rotateY}
                 rotation-z = {rotateZ}
-                onClick={deleteCube}>
+                onClick={deleteCube} 
+                ref = {meshRef}>
            <boxGeometry /> 
             <meshStandardMaterial 
                    color = {meshColor} 
@@ -88,7 +136,7 @@ const Main = () => {
         }
 
 {duplicatedMesh.map((mesh, index) => (
-        <mesh key={index} position={[index * 3, 0, 0 ]}>
+        <mesh key={index} position={[index * 2, 0, 0 ]}>
           {mesh.geometry}
           {mesh.material}
         </mesh>

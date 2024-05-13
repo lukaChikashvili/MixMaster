@@ -4,6 +4,7 @@ import SideBar from "./components/SideBar";
 import Right from "./components/Right";
 
 
+
 function App() {
  
 
@@ -11,10 +12,11 @@ function App() {
   return (
     <>
     <div className="App">
+  
          <Canvas>
            <Main />
          </Canvas>
-
+       
          <div>
             <SideBar />
          </div>
