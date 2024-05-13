@@ -20,7 +20,8 @@ const Main = () => {
 
     // global states
     const { torus, sphere, setSphere, setTorus, box , setBox, plane, setPlane,
-       meshColor, metalness, roughness, planeColor, positionX, positionY, positionZ, scaleX, scaleY, scaleZ} = useContext(MeshContext);
+       meshColor, metalness, roughness, planeColor, positionX, positionY, positionZ, scaleX, 
+       scaleY, scaleZ, rotateX, rotateY, rotateZ} = useContext(MeshContext);
 
 
     // delete mesh
@@ -72,6 +73,9 @@ const Main = () => {
                 scale-x = {scaleX} 
                 scale-y = {scaleY}
                 scale-z = {scaleZ}
+                rotation-x = {rotateX}
+                rotation-y = {rotateY}
+                rotation-z = {rotateZ}
                 onClick={deleteCube}>
            <boxGeometry /> 
             <meshStandardMaterial 

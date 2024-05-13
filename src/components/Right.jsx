@@ -6,13 +6,15 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 const Right = () => {
  
   const { updateMeshColor, meshColor, setMetalness, setRoughness, updatePlaneColor, planeColor, setPositionX,
-          setPositionY, setPositionZ, setScaleX, setScaleY, setScaleZ } = useContext(MeshContext);
+          setPositionY, setPositionZ, setScaleX, setScaleY, setScaleZ, setRotateX, setRotateY, setRotateZ } = useContext(MeshContext);
 
   const [showRGB, setShowRGB] = useState(false);
   const [planeRgb, setPlaneRgb] = useState(false);
   
   const [location, setLocation] = useState(false);
   const [scale, setScale] = useState(false);
+  const [rotation, setRotation] = useState(false);
+
 
 
   const handleColorChange = (color) => {
@@ -124,6 +126,30 @@ const Right = () => {
        <div className='flex gap-4'>
        <h2 className='text-white  underline underline-offset-4'>Scale Z: </h2>
        <input type='number'  className='w-24 rounded-md outline-none' onChange={(e) => setScaleZ(e.target.value)}/>
+       </div>
+       
+  </div>
+)}
+
+
+<h1 className='text-white mt-4  cursor-pointer text-xl' onClick={() => setRotation(!rotation)}>control mesh rotation <ArrowDropDownIcon /></h1>
+
+{rotation && (
+  <div className='flex flex-col gap-4 pt-4'>
+
+   <div className='flex gap-4'>
+       <h2 className='text-white  underline underline-offset-4'>Rotate X: </h2>
+       <input type='number' step ={1.5} className='w-24 rounded-md outline-none' onChange={(e) => setRotateX(e.target.value)}/>
+       </div>
+
+       <div className='flex gap-4'>
+       <h2 className='text-white  underline underline-offset-4'>Rotate Y: </h2>
+       <input type='number' step ={1.5} className='w-24 rounded-md outline-none' onChange={(e) => setRotateY(e.target.value)}/>
+       </div>
+
+       <div className='flex gap-4'>
+       <h2 className='text-white  underline underline-offset-4'>Rotate Z: </h2>
+       <input type='number' step ={1.5} className='w-24 rounded-md outline-none' onChange={(e) => setRotateZ(e.target.value)}/>
        </div>
        
   </div>
