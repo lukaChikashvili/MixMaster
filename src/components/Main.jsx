@@ -8,16 +8,13 @@ import CloseIcon from '@mui/icons-material/Close';
 import { MeshContext } from '../context/meshContext';
 import { useKeyPress  } from 'react-use';
 
-
-
 const Main = () => {
     const [cube, setCube] = useState(true);
     // delete modal
     const [delModal, setDelModal] = useState(false);
 
+
   
-
-
 
     // plane grid texture
     const grid = useLoader(TextureLoader, gridImg);
@@ -25,7 +22,7 @@ const Main = () => {
     // global states
     const { torus, sphere, setSphere, setTorus, box , setBox, plane, setPlane,
        meshColor, metalness, roughness, planeColor, positionX, positionY, positionZ, scaleX, 
-       scaleY, scaleZ, rotateX, rotateY, rotateZ, duplicatedMesh} = useContext(MeshContext);
+       scaleY, scaleZ, rotateX, rotateY, rotateZ, duplicatedMesh, setArrowPressed} = useContext(MeshContext);
 
 
          // right arrow click
@@ -41,6 +38,7 @@ const Main = () => {
    useEffect(() => {
       if(rightClick) {
         meshRef.current.position.x += 0.5;
+        setArrowPressed('Arrow right' );
       }
    }, [rightClick]);
 
@@ -48,6 +46,7 @@ const Main = () => {
    useEffect(() => {
       if(leftClick) {
         meshRef.current.position.x -= 0.5;
+        setArrowPressed('Arrow left');
       }
    }, [leftClick]);
 
@@ -55,6 +54,7 @@ const Main = () => {
    useEffect(() => {
     if(upClick) {
       meshRef.current.position.y += 0.5;
+      setArrowPressed('Arrow up');
     }
  }, [upClick]);
 
@@ -62,6 +62,7 @@ const Main = () => {
       useEffect(() => {
         if(downClick) {
           meshRef.current.position.y -= 0.5;
+          setArrowPressed('Arrow down');
         }
      }, [downClick]);
     
@@ -190,6 +191,8 @@ const Main = () => {
                         <Button className='flex gap-4' variant='contained' onClick={deleteMesh}>Delete? <CloseIcon /></Button>
                     </div>
                </Html>}
+
+             
        
     </>
   )
