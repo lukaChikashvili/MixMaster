@@ -2,11 +2,13 @@ import React, { useContext, useState } from 'react'
 import { MeshContext } from '../context/meshContext'
 import { HexColorPicker } from 'react-colorful';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import ModeIcon from '@mui/icons-material/Mode';
 
 const Right = () => {
  
   const { updateMeshColor, meshColor, setMetalness, setRoughness, updatePlaneColor, planeColor, setPositionX,
-          setPositionY, setPositionZ, setScaleX, setScaleY, setScaleZ, setRotateX, setRotateY, setRotateZ } = useContext(MeshContext);
+          setPositionY, setPositionZ, setScaleX, setScaleY, setScaleZ, setRotateX, setRotateY, setRotateZ,
+           addDuplicatedMesh , metalness, roughness} = useContext(MeshContext);
 
   const [showRGB, setShowRGB] = useState(false);
   const [planeRgb, setPlaneRgb] = useState(false);
@@ -23,6 +25,22 @@ const Right = () => {
 
   const handlePlaneColor = (color) => {
      updatePlaneColor(color);
+
+  }
+
+  const handleDuplicate = () => {
+    addDuplicatedMesh({
+      position: [0, 3, 0],
+      geometry: <boxGeometry />,
+      material: (
+        <meshStandardMaterial
+          color={meshColor} 
+          metalness={metalness}
+          roughness={roughness}
+        />
+      ),
+    });
+
 
   }
   return (
@@ -154,6 +172,8 @@ const Right = () => {
        
   </div>
 )}
+
+<h1 className='text-xl text-white mt-4 flex items-center gap-4'>Duplicate mesh <ModeIcon className='cursor-pointer duration-500 ease hover:text-green-500' onClick = {handleDuplicate} /></h1>
       
     </div>
   )

@@ -31,6 +31,15 @@ const MeshProvider = ({children}) => {
     const [rotateY, setRotateY] = useState(0);
     const [rotateZ, setRotateZ] = useState(0);
 
+    // mesh duplication
+    const [duplicatedMesh, setDuplicatedMesh] = useState([]);
+
+    const addDuplicatedMesh = (mesh) => {
+       setDuplicatedMesh((prev) => [...prev, mesh]);
+
+    }
+
+
     const updateMeshColor = (color) => {
        setMeshColor(color);
     }
@@ -44,7 +53,7 @@ const MeshProvider = ({children}) => {
             torus, setTorus, sphere, setSphere, box, setBox, plane, setPlane, meshColor, 
             updateMeshColor, metalness, setMetalness, positionX, setPositionX, positionY, setPositionY,
              positionZ, setPositionZ, scaleX, setScaleX, scaleY, setScaleY, scaleZ, setScaleZ, rotateX,
-              rotateY, rotateZ, setRotateX, setRotateY, setRotateZ}}
+              rotateY, rotateZ, setRotateX, setRotateY, setRotateZ, duplicatedMesh, addDuplicatedMesh}}
         >
        {children}
        </MeshContext.Provider>

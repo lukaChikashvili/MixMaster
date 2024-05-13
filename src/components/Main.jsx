@@ -21,7 +21,7 @@ const Main = () => {
     // global states
     const { torus, sphere, setSphere, setTorus, box , setBox, plane, setPlane,
        meshColor, metalness, roughness, planeColor, positionX, positionY, positionZ, scaleX, 
-       scaleY, scaleZ, rotateX, rotateY, rotateZ} = useContext(MeshContext);
+       scaleY, scaleZ, rotateX, rotateY, rotateZ, duplicatedMesh} = useContext(MeshContext);
 
 
     // delete mesh
@@ -82,8 +82,21 @@ const Main = () => {
                    color = {meshColor} 
                    metalness={metalness}
                    roughness={roughness} />
-        </mesh> }
+        </mesh>
+          
+      
+        }
 
+{duplicatedMesh.map((mesh, index) => (
+        <mesh key={index} position={[index * 3, 0, 0 ]}>
+          {mesh.geometry}
+          {mesh.material}
+        </mesh>
+      ))}
+
+     
+
+   
         {torus && (
         <mesh position={[0, 0, 0]} scale={1.5} onClick={deleteCube}>
            <torusGeometry />
