@@ -14,6 +14,8 @@ const SideBar = () => {
     const [meshModal, setMeshModal] = useState(false);
     const [textureModal, setTextureModal] = useState(false);
     
+// more textures
+const [moreTextures, setMoreTextures] = useState(false);
 
   
 
@@ -30,6 +32,12 @@ const SideBar = () => {
 
  const showTorus = () => {
     setTorus(true);
+ }
+
+ // show more texture modal
+ const showMoreTextures = () => {
+  setMoreTextures(true);
+  setTextureModal(false);
  }
     
   return (
@@ -73,9 +81,35 @@ const SideBar = () => {
               <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/1B1B1B_515151_7E7E7E_6C6C6C.jpg" onClick={() => applyMatcap('1B1B1B_515151_7E7E7E_6C6C6C')} className='rounded-full w-24 cursor-pointer'/>
               <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/1B1B1B_999999_575757_747474.jpg" onClick={() => applyMatcap('1B1B1B_999999_575757_747474')} className='rounded-full w-24 cursor-pointer'/>
               <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/1C70C6_09294C_0F3F73_52B3F6.jpg" onClick={() => applyMatcap('1C70C6_09294C_0F3F73_52B3F6')} className='rounded-full w-24 cursor-pointer'/>
+              <h2 className='mt-8 cursor-pointer font-bold underline underline-offset-4 duration-500 ease-in hover:decoration-wavy' onClick={showMoreTextures}>More textures</h2>
               </div>
            }
+
+
       </div>
+    {moreTextures && <div className='absolute mt-96 opacity-80 bg-black p-12  flex flex-wrap gap-12 rounded-md  overflow-auto max-h-56 w-full ' >
+         <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/5A492B_DEC583_987D4D_AC9C74.jpg" className='rounded-full w-36 cursor-pointer'/>
+         <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/5A492B_DEC583_987D4D_AC9C74.jpg" className='rounded-full w-36 cursor-pointer'/>
+         <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/5A492B_DEC583_987D4D_AC9C74.jpg" className='rounded-full w-36 cursor-pointer'/>
+         <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/5A492B_DEC583_987D4D_AC9C74.jpg" className='rounded-full w-36 cursor-pointer'/>
+
+         <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/5A492B_DEC583_987D4D_AC9C74.jpg" className='rounded-full w-36 cursor-pointer'/>
+         <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/5A492B_DEC583_987D4D_AC9C74.jpg" className='rounded-full w-36 cursor-pointer'/>
+         <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/5A492B_DEC583_987D4D_AC9C74.jpg" className='rounded-full w-36 cursor-pointer'/>
+         <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/5A492B_DEC583_987D4D_AC9C74.jpg" className='rounded-full w-36 cursor-pointer'/>
+
+         <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/5A492B_DEC583_987D4D_AC9C74.jpg" className='rounded-full w-36 cursor-pointer'/>
+         <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/5A492B_DEC583_987D4D_AC9C74.jpg" className='rounded-full w-36 cursor-pointer'/>
+         <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/5A492B_DEC583_987D4D_AC9C74.jpg" className='rounded-full w-36 cursor-pointer'/>
+         <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/5A492B_DEC583_987D4D_AC9C74.jpg" className='rounded-full w-36 cursor-pointer'/>
+
+         <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/5A492B_DEC583_987D4D_AC9C74.jpg" className='rounded-full w-36 cursor-pointer'/>
+         <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/5A492B_DEC583_987D4D_AC9C74.jpg" className='rounded-full w-36 cursor-pointer'/>
+         <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/5A492B_DEC583_987D4D_AC9C74.jpg" className='rounded-full w-36 cursor-pointer'/>
+         <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/5A492B_DEC583_987D4D_AC9C74.jpg" className='rounded-full w-36 cursor-pointer'/>
+    </div>}
+      
+
 
    
     </div>

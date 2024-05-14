@@ -6,6 +6,7 @@ const LeftSidebar = () => {
 
     const { arrowPressed } = useContext(MeshContext);
   return (
+    <>
     <div className='absolute bottom-4 right-4 '>
           {
               arrowPressed && <div className='mt-12'>
@@ -13,6 +14,8 @@ const LeftSidebar = () => {
               </div>
             }
     </div>
+   
+    </>
   )
 }
 
