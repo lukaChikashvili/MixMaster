@@ -21,3 +21,15 @@ body {
     background-color: #363636;
     font-family: 'Yaldevi', sans-serif;
 }
+
+.textureModal::-webkit-scrollbar {
+   width: 10px;
+}
+
+.textureModal::-webkit-scrollbar-track {
+    background: #000;
+ }
+ .textureModal::-webkit-scrollbar-thumb {
+   background-color: #192854;
+   border-radius: 5px;
+ }

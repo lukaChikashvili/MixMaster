@@ -87,26 +87,37 @@ const [moreTextures, setMoreTextures] = useState(false);
 
 
       </div>
-    {moreTextures && <div className='absolute mt-96 opacity-80 bg-black p-12  flex flex-wrap gap-12 rounded-md  overflow-auto max-h-56 w-full ' >
-         <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/5A492B_DEC583_987D4D_AC9C74.jpg" className='rounded-full w-36 cursor-pointer'/>
-         <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/5A492B_DEC583_987D4D_AC9C74.jpg" className='rounded-full w-36 cursor-pointer'/>
-         <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/5A492B_DEC583_987D4D_AC9C74.jpg" className='rounded-full w-36 cursor-pointer'/>
-         <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/5A492B_DEC583_987D4D_AC9C74.jpg" className='rounded-full w-36 cursor-pointer'/>
+    {moreTextures && <div className='absolute  bg-black p-12   flex flex-wrap gap-24 rounded-md  overflow-auto max-h-56 w-4/5 ml-28 textureModal ' style={{marginTop: '480px'}} >
+         <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/5A492B_DEC583_987D4D_AC9C74.jpg" className='rounded-full w-36 cursor-pointer' onClick={() => applyMatcap('5A492B_DEC583_987D4D_AC9C74')}/>
+         <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/5A643B_454D2C_393F25_202315.jpg" className='rounded-full w-36 cursor-pointer' onClick={() => applyMatcap('5A643B_454D2C_393F25_202315')}/>
+         <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/5B4CBC_B59AF2_9B84EB_8F78E4.jpg" className='rounded-full w-36 cursor-pointer' onClick={() => applyMatcap('5B4CBC_B59AF2_9B84EB_8F78E4')}/>
+         <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/5B5428_C5A052_A28B46_ADA752.jpg" className='rounded-full w-36 cursor-pointer' onClick={() => applyMatcap('5B5428_C5A052_A28B46_ADA752')}/>
 
-         <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/5A492B_DEC583_987D4D_AC9C74.jpg" className='rounded-full w-36 cursor-pointer'/>
-         <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/5A492B_DEC583_987D4D_AC9C74.jpg" className='rounded-full w-36 cursor-pointer'/>
-         <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/5A492B_DEC583_987D4D_AC9C74.jpg" className='rounded-full w-36 cursor-pointer'/>
-         <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/5A492B_DEC583_987D4D_AC9C74.jpg" className='rounded-full w-36 cursor-pointer'/>
+         <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/5C045C_BD0DBD_930493_A404A4.jpg" className='rounded-full w-36 cursor-pointer' onClick={() => applyMatcap('5C045C_BD0DBD_930493_A404A4')}/>
+         <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/5C5C5C_A2A2A2_8C8C8C_848484.jpg" className='rounded-full w-36 cursor-pointer' onClick={() => applyMatcap('5C5C5C_A2A2A2_8C8C8C_848484')}/>
+         <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/5D5D5D_CDCDCD_232323_ACACAC.jpg" className='rounded-full w-36 cursor-pointer' onClick={() => applyMatcap('5D5D5D_CDCDCD_232323_ACACAC')}/>
+         <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/254FB0_99AFF0_6587D8_1D3279.jpg" className='rounded-full w-36 cursor-pointer' onClick={() => applyMatcap('254FB0_99AFF0_6587D8_1D3279')}/>
 
-         <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/5A492B_DEC583_987D4D_AC9C74.jpg" className='rounded-full w-36 cursor-pointer'/>
-         <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/5A492B_DEC583_987D4D_AC9C74.jpg" className='rounded-full w-36 cursor-pointer'/>
-         <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/5A492B_DEC583_987D4D_AC9C74.jpg" className='rounded-full w-36 cursor-pointer'/>
-         <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/5A492B_DEC583_987D4D_AC9C74.jpg" className='rounded-full w-36 cursor-pointer'/>
+         <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/27222B_677491_484F6A_5D657A.jpg" className='rounded-full w-36 cursor-pointer' onClick={() => applyMatcap('27222B_677491_484F6A_5D657A')}/>
+         <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/293534_B2BFC5_738289_8A9AA7.jpg" className='rounded-full w-36 cursor-pointer' onClick={() => applyMatcap('293534_B2BFC5_738289_8A9AA7')}/>
+         <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/293D21_ABC692_73B255_667C5C.jpg" className='rounded-full w-36 cursor-pointer' onClick={() => applyMatcap('293D21_ABC692_73B255_667C5C')}/>
+         <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/2A2A2A_B3B3B3_6D6D6D_848C8C.jpg" className='rounded-full w-36 cursor-pointer' onClick={() => applyMatcap('2A2A2A_B3B3B3_6D6D6D_848C8C')}/>
 
-         <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/5A492B_DEC583_987D4D_AC9C74.jpg" className='rounded-full w-36 cursor-pointer'/>
-         <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/5A492B_DEC583_987D4D_AC9C74.jpg" className='rounded-full w-36 cursor-pointer'/>
-         <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/5A492B_DEC583_987D4D_AC9C74.jpg" className='rounded-full w-36 cursor-pointer'/>
-         <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/5A492B_DEC583_987D4D_AC9C74.jpg" className='rounded-full w-36 cursor-pointer'/>
+         <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/2E763A_78A0B7_B3D1CF_14F209.jpg" className='rounded-full w-36 cursor-pointer' onClick={() => applyMatcap('2E763A_78A0B7_B3D1CF_14F209')}/>
+         <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/2F3747_6A7C9E_54637F_62748B.jpg" className='rounded-full w-36 cursor-pointer' onClick={() => applyMatcap('2F3747_6A7C9E_54637F_62748B')}/>
+         <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/300706_888576_822821_876E79.jpg" className='rounded-full w-36 cursor-pointer' onClick={() => applyMatcap('300706_888576_822821_876E79')}/>
+         <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/312C34_A2AAB3_61656A_808494.jpg" className='rounded-full w-36 cursor-pointer' onClick={() => applyMatcap('312C34_A2AAB3_61656A_808494')}/>
+
+         <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/313131_BBBBBB_878787_A3A4A4.jpg" className='rounded-full w-36 cursor-pointer' onClick={() => applyMatcap('313131_BBBBBB_878787_A3A4A4')}/>
+         <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/331A0B_B17038_7D4E28_5B351A.jpg" className='rounded-full w-36 cursor-pointer' onClick={() => applyMatcap('331A0B_B17038_7D4E28_5B351A')}/>
+         <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/34AB94_36DFC1_19F9EB_6C6E62.jpg" className='rounded-full w-36 cursor-pointer' onClick={() => applyMatcap('34AB94_36DFC1_19F9EB_6C6E62')}/>
+         <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/385264_A1D3E2_86ADC1_6E94A8.jpg" className='rounded-full w-36 cursor-pointer' onClick={() => applyMatcap('385264_A1D3E2_86ADC1_6E94A8')}/>
+
+         <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/3A3329_C9B090_928069_A9957A.jpg" className='rounded-full w-36 cursor-pointer' onClick={() => applyMatcap('3A3329_C9B090_928069_A9957A')}/>
+         <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/3B3C3F_DAD9D5_929290_ABACA8.jpg" className='rounded-full w-36 cursor-pointer' onClick={() => applyMatcap('3B3C3F_DAD9D5_929290_ABACA8')}/>
+         <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/3E3E3E_AEAEAE_848484_777777.jpg" className='rounded-full w-36 cursor-pointer' onClick={() => applyMatcap('3E3E3E_AEAEAE_848484_777777')}/>
+         <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/422509_C89536_824512_0A0604.jpg" className='rounded-full w-36 cursor-pointer' onClick={() => applyMatcap('422509_C89536_824512_0A0604')}/>
+         <span className='absolute text-white left-4 top-4 text-xl cursor-pointer' onClick={() => setMoreTextures(false)}>X</span>
     </div>}
       
 

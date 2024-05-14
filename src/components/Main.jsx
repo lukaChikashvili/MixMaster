@@ -223,12 +223,26 @@ const Main = () => {
         </mesh>
       )}
       {sphere && (
-        <mesh position={[0, 0, 0]} scale={1.5} onClick={deleteCube}>
+        <mesh position-x={ positionX } 
+              position-y = {positionY} 
+              position-z = {positionZ}
+              scale-x = {scaleX} 
+              scale-y = {scaleY}
+              scale-z = {scaleZ}
+              rotation-x = {rotateX}
+              rotation-y = {rotateY}
+              rotation-z = {rotateZ}
+              onClick={deleteCube} 
+              ref = {meshRef}>
             <sphereGeometry />
-          <meshStandardMaterial 
-                   color = {meshColor}
+            {selectedTexture ? (<meshMatcapMaterial matcap={matcap} />) :
+            <meshStandardMaterial 
+                   color = {meshColor} 
                    metalness={metalness}
-                   roughness={roughness}/>
+                   roughness={roughness} 
+                   
+                   />
+  }
         </mesh>
       )}
 
