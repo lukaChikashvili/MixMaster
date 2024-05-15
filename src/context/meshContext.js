@@ -39,6 +39,12 @@ const MeshProvider = ({children}) => {
 
  const [selectedTexture, setSelectedTexture] = useState(null);
 
+ // image texture
+ const [img, setImg] = useState(false);
+ // input url
+
+ const [url, setUrl] = useState('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PFRUWFhURFRUYHSggGBolHRUVITEhJSkrLi4uFx8zODMtNygtLisBCgoKDQ0NDg0NDisZFRkyKzctNy0rKy03LS0tKysrLS0tLS03KzctKys3LSs3KzcrLS03NystKysrKys3KysrK//AABEIAOEA4QMBIgACEQEDEQH/xAAYAAEBAQEBAAAAAAAAAAAAAAABAAIDBv/EABYQAQEBAAAAAAAAAAAAAAAAAAARAf/EABYBAQEBAAAAAAAAAAAAAAAAAAABAv/EABURAQEAAAAAAAAAAAAAAAAAAAAR/9oADAMBAAIRAxEAPwD12hrQihEKBFAEkCBQCIgEkgQKAIgEkgCKECKAJIEkQBRB01HQjQRCiBQgRQBEChFCANAAigCSBAoAigCIBIoQJICkQddDWhGmU0ACMQBEAEUADSBlECBFAEUoEYoABQBFAEUARQJGAHfQdSKyigCKABqAAigAKABoAEUARQgDQBAoAioARQBEgEYgdUdAoRQBFAA0ACKBlFAA0gZRQBFAEQARQgRQBGGAyVCAiJB00RoCpJAIoUAgKAIqAyigAaABQoAigCKAQNRAzE0gCKEChQJIg6BrcCKEYgCKBlQpQREAEYgCKBlFAEUARUARFQAoYgEUKEChUBQFA6hoIoRQBFAyoUARACIxAFCgAhhBlQkGU0gZRSgRQBFCBEgEUDoCkUKGIBEVAZTQAIoAGhAERQBFQAoiARAIRoAEUAUKUBKgAqISNoqIoRQBQoGUYoARQMkgBEUARUBlNRAASABQBNAEojFBEUAiKBtGKIBFAymgARQBEQAigCKAIiAkUADQAIxACkCBhUERQCBpA2ikAkQAKAKFAA0ACKAIoAGgAiKAIoAoUAUKAIoEkVAjEDaIQQKAIoBAUARQBJAEUARQBFAEUASQJJAlEgSKUSUINI6EAigCKAAoAigCIBJIECgBiQBFAEkARSgKMAFIEiQKCQRCBJIEtSAIoAkgQSBIoEMKAIoAkgCKUBSApJApJR//2Q==');
+
 
     const addDuplicatedMesh = (mesh) => {
        setDuplicatedMesh((prev) => [...prev, mesh]);
@@ -54,13 +60,15 @@ const MeshProvider = ({children}) => {
       setPlaneColor(color);
     }
 
+   
+
     return (
         <MeshContext.Provider value={{planeColor, updatePlaneColor, roughness, setRoughness, 
             torus, setTorus, sphere, setSphere, box, setBox, plane, setPlane, meshColor, 
             updateMeshColor, metalness, setMetalness, positionX, setPositionX, positionY, setPositionY,
              positionZ, setPositionZ, scaleX, setScaleX, scaleY, setScaleY, scaleZ, setScaleZ, rotateX,
               rotateY, rotateZ, setRotateX, setRotateY, setRotateZ, duplicatedMesh, addDuplicatedMesh,
-            arrowPressed, setArrowPressed, selectedTexture, setSelectedTexture}}
+            arrowPressed, setArrowPressed, selectedTexture, setSelectedTexture, img, setImg, url, setUrl}}
         >
        {children}
        </MeshContext.Provider>

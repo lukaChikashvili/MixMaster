@@ -3,12 +3,13 @@ import { MeshContext } from '../context/meshContext'
 import { HexColorPicker } from 'react-colorful';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ModeIcon from '@mui/icons-material/Mode';
+import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 
 const Right = () => {
  
   const { updateMeshColor, meshColor, setMetalness, setRoughness, updatePlaneColor, planeColor, setPositionX,
           setPositionY, setPositionZ, setScaleX, setScaleY, setScaleZ, setRotateX, setRotateY, setRotateZ,
-           addDuplicatedMesh , metalness, roughness} = useContext(MeshContext);
+           addDuplicatedMesh , metalness, roughness, setImg, img, url, setUrl} = useContext(MeshContext);
 
   const [showRGB, setShowRGB] = useState(false);
   const [planeRgb, setPlaneRgb] = useState(false);
@@ -27,6 +28,9 @@ const Right = () => {
      updatePlaneColor(color);
 
   }
+
+
+
 
   const handleDuplicate = () => {
     addDuplicatedMesh({
@@ -175,6 +179,11 @@ const Right = () => {
 
 <h1 className='text-xl text-white mt-4 flex items-center gap-4'>Duplicate mesh <ModeIcon className='cursor-pointer duration-500 ease hover:text-green-500' onClick = {handleDuplicate} /></h1>
       
+<h1 className='text-xl text-white mt-4 flex items-center gap-4'>Set image as a texture <InsertPhotoIcon className='cursor-pointer duration-500 ease hover:text-green-500' onClick = {() => setImg(!img)} /></h1>
+
+{img && <div>
+      <input type='text' className='outline-none rounded-md mt-4' onChange={(e) => setUrl(e.target.value)} />
+  </div>}
     </div>
   )
 }

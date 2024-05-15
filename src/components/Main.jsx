@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
-import { Html, OrbitControls, useMatcapTexture } from '@react-three/drei';
+import { Html, OrbitControls, Text, useMatcapTexture, useTexture } from '@react-three/drei';
 import gridImg from '../assets/grid.png';
 import { useLoader } from '@react-three/fiber';
 import { TextureLoader, axesHelper, DoubleSide, MeshMatcapMaterial } from 'three';
@@ -22,7 +22,8 @@ const Main = () => {
     // global states
     const { torus, sphere, setSphere, setTorus, box , setBox, plane, setPlane,
        meshColor, metalness, roughness, planeColor, positionX, positionY, positionZ, scaleX, 
-       scaleY, scaleZ, rotateX, rotateY, rotateZ, duplicatedMesh, setArrowPressed, selectedTexture} = useContext(MeshContext);
+       scaleY, scaleZ, rotateX, rotateY, rotateZ, duplicatedMesh, setArrowPressed, selectedTexture, 
+       url, img, setSelectedTexture} = useContext(MeshContext);
 
 
          // right arrow click
@@ -35,6 +36,7 @@ const Main = () => {
     const y = useKeyPress('y');
     const z = useKeyPress('z');
     const zero = useKeyPress('0');
+    const t = useKeyPress('t');
   
     let meshRef = useRef();
 
@@ -125,6 +127,17 @@ const Main = () => {
           }
        }, [z]);
       
+          // remove texture
+          useEffect(() => {
+            if(t) {
+           
+              setSelectedTexture('');
+           
+              setArrowPressed('T');
+            }
+         }, [t]);
+        
+   
  
     
 
@@ -145,8 +158,9 @@ const Main = () => {
     }
 
     const [ matcap ] = useMatcapTexture(selectedTexture, 256);
-    
 
+    // text loader
+  const imgTexture = useTexture(url);
 
 
   return (
@@ -187,6 +201,7 @@ const Main = () => {
                 rotation-z = {rotateZ}
                 onClick={deleteCube} 
                 ref = {meshRef}
+               
                 
                 >
            <boxGeometry /> 
@@ -195,6 +210,7 @@ const Main = () => {
                    color = {meshColor} 
                    metalness={metalness}
                    roughness={roughness} 
+                   map = {imgTexture}
                    
                    />
   }
