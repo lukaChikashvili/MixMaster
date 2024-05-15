@@ -5,6 +5,9 @@ import square from '../assets/square.png';
 import sphere from '../assets/sphere.png';
 import torusImg from '../assets/torus.png';
 import { MeshContext } from '../context/meshContext';
+import LanguageIcon from '@mui/icons-material/Language';
+import { Tooltip } from '@mui/material';
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 
 
 
@@ -17,11 +20,12 @@ const SideBar = () => {
 // more textures
 const [moreTextures, setMoreTextures] = useState(false);
 
+const [active, setActive] = useState(null);
   
 
 
  // use context
- const { setTorus, setSphere, setBox, setPlane, setSelectedTexture, img, url } = useContext(MeshContext);
+ const { setTorus, setSphere, setBox, setPlane, setSelectedTexture, img, url, setWireframe, wireframe, animation, setAnimation, setStartAnimation } = useContext(MeshContext);
 
    // apply matcaps
    const applyMatcap = (textureUrl) => {
@@ -38,6 +42,11 @@ const [moreTextures, setMoreTextures] = useState(false);
  const showMoreTextures = () => {
   setMoreTextures(true);
   setTextureModal(false);
+ }
+
+ const handleActive = (index) => {
+    setActive(index);
+   
  }
     
   return (
@@ -69,8 +78,9 @@ const [moreTextures, setMoreTextures] = useState(false);
              
             </div>}
 
+            
             <p className='cursor-pointer duration-500 w-24 text-center rounded-md ease hover:bg-gray-500' onClick={() => setTextureModal(!textureModal)} >Textures</p>
-           
+          
            {
             textureModal && <div className='absolute top-16 left-4 flex gap-8 bg-black p-2 rounded-md'>
               <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/15100F_241D1B_292424_2C2C27.jpg" onClick={() => applyMatcap('15100F_241D1B_292424_2C2C27')}  className='rounded-full w-24 cursor-pointer'/>
@@ -125,7 +135,32 @@ const [moreTextures, setMoreTextures] = useState(false);
          <p className='text-center underline underline-offset-8 duration-500 ease-in hover:decoration-wavy'>Image preview</p>
          <img src = {url} className='w-36 h-24 object-cover mt-4 rounded-md shadow-lg'/>
       </div>}
-   
+
+      <Tooltip title= "Wireframe mode" >
+      <LanguageIcon className='absolute right-4 cursor-pointer opacity-50 duration-500 ease hover:opacity-100' onClick = {() => setWireframe(!wireframe)}/>
+      </Tooltip>
+
+      <p className='cursor-pointer duration-500 w-24 text-center rounded-md ease hover:bg-gray-500' onClick={() => setAnimation(true)}>Animation</p>
+
+      {animation && <div className='absolute mt-12 right-4'>
+           <p className='text-center'>Animation</p>
+           <div className='bg-black opacity-70 p-4 rounded-md'>
+            <div className='flex gap-4'>
+              <span> speed:</span>
+              <input type='number'  className='w-24 outline-none' />
+              </div>
+
+              <div className='flex gap-4'>
+              <span onClick={() => handleActive(1)} className={active === 1 ? 'active' : ''} style={{cursor: 'pointer', padding: '4px'}}>Rotate on X:</span>
+              <span onClick={() => handleActive(2)} className={active === 2 ? 'active' : ''} style={{cursor: 'pointer', padding: '4px'}}>Rotate on Y:</span>
+              <span onClick={() => handleActive(3)}className={active === 3 ? 'active' : '' } style={{cursor: 'pointer', padding: '4px'}}>Rotate on Z:</span>
+              
+              </div>
+           </div>
+        </div>}
+
+
+       
     </div>
   )
 }

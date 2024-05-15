@@ -33,3 +33,11 @@ body {
    background-color: #192854;
    border-radius: 5px;
  }
+
+ .active {
+    background-color: green;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.9s cubic-bezier(0.645, 0.045, 0.355, 1)
+   
+ }

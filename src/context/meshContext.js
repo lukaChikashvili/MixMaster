@@ -60,6 +60,17 @@ const MeshProvider = ({children}) => {
       setPlaneColor(color);
     }
 
+    // wireframe mode
+    const [wireframe, setWireframe] = useState(false);
+    // animation modal
+    const [animation, setAnimation] = useState(false);
+
+    // start animation
+    const [startAnimation, setStartAnimation] = useState(false);
+
+    //  rotation animations
+    const [rotationAnimX, setRotationAnimX] = useState(false);
+
    
 
     return (
@@ -68,7 +79,8 @@ const MeshProvider = ({children}) => {
             updateMeshColor, metalness, setMetalness, positionX, setPositionX, positionY, setPositionY,
              positionZ, setPositionZ, scaleX, setScaleX, scaleY, setScaleY, scaleZ, setScaleZ, rotateX,
               rotateY, rotateZ, setRotateX, setRotateY, setRotateZ, duplicatedMesh, addDuplicatedMesh,
-            arrowPressed, setArrowPressed, selectedTexture, setSelectedTexture, img, setImg, url, setUrl}}
+            arrowPressed, setArrowPressed, selectedTexture, setSelectedTexture, img, setImg, url, setUrl,
+          wireframe, setWireframe, animation, setAnimation, startAnimation, setStartAnimation, rotationAnimX, setRotationAnimX}}
         >
        {children}
        </MeshContext.Provider>

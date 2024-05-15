@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import { Html, OrbitControls, Text, useMatcapTexture, useTexture } from '@react-three/drei';
 import gridImg from '../assets/grid.png';
-import { useLoader } from '@react-three/fiber';
+import { useFrame, useLoader } from '@react-three/fiber';
 import { TextureLoader, axesHelper, DoubleSide, MeshMatcapMaterial } from 'three';
 import { Button } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
@@ -23,7 +23,15 @@ const Main = () => {
     const { torus, sphere, setSphere, setTorus, box , setBox, plane, setPlane,
        meshColor, metalness, roughness, planeColor, positionX, positionY, positionZ, scaleX, 
        scaleY, scaleZ, rotateX, rotateY, rotateZ, duplicatedMesh, setArrowPressed, selectedTexture, 
-       url, setUrl,  setSelectedTexture} = useContext(MeshContext);
+       url, setUrl,  setSelectedTexture, wireframe, startAnimation} = useContext(MeshContext);
+
+
+    // mesh animation
+    useFrame(() => {
+      if(startAnimation) {
+        meshRef.current.rotation.y += 0.01;
+      }
+    })
 
 
          // right arrow click
@@ -37,6 +45,7 @@ const Main = () => {
     const z = useKeyPress('z');
     const zero = useKeyPress('0');
     const t = useKeyPress('t');
+ 
   
     let meshRef = useRef();
 
@@ -137,6 +146,7 @@ const Main = () => {
             }
          }, [t]);
         
+       
    
  
     
@@ -211,6 +221,7 @@ const Main = () => {
                    metalness={metalness}
                    roughness={roughness} 
                    map = {imgTexture}
+                   wireframe = {wireframe && true}
                    
                    />
   }
