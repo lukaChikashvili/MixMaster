@@ -24,7 +24,7 @@ const Main = () => {
        meshColor, metalness, roughness, planeColor, positionX, positionY, positionZ, scaleX, 
        scaleY, scaleZ, rotateX, rotateY, rotateZ, duplicatedMesh, setArrowPressed, selectedTexture, 
        url, setUrl,  setSelectedTexture, wireframe, startAnimation, rotationAnimX, rotationAnimY,
-        rotationAnimZ, positionAnimX, positionAnimY, positionAnimZ} = useContext(MeshContext);
+        rotationAnimZ, positionAnimX, positionAnimY, positionAnimZ, animSpeed} = useContext(MeshContext);
 
 
     // mesh animation
@@ -32,35 +32,35 @@ const Main = () => {
       
       if( startAnimation && rotationAnimX ) {
 
-        meshRef.current.rotation.x += 0.01;
+        meshRef.current.rotation.x += parseFloat(animSpeed);
 
       }else if(startAnimation && rotationAnimY) {
 
-        meshRef.current.rotation.y += 0.01; 
+        meshRef.current.rotation.y += parseFloat(animSpeed);; 
         meshRef.current.rotation.x = 0;
         
 
       }else if(startAnimation && rotationAnimZ) {
 
-        meshRef.current.rotation.z += 0.01;
+        meshRef.current.rotation.z +=  parseFloat(animSpeed);;
         meshRef.current.rotation.x = 0;
         meshRef.current.rotation.y = 0; 
 
       }else if(startAnimation && positionAnimX) {
 
         meshRef.current.position.z = 0;
-        meshRef.current.position.x += 0.01;
+        meshRef.current.position.x +=  parseFloat(animSpeed);;
         meshRef.current.position.y = 0; 
 
       }else if(startAnimation && positionAnimY) {
 
         meshRef.current.position.z = 0;
         meshRef.current.position.x = 0;
-        meshRef.current.position.y += 0.01; 
+        meshRef.current.position.y +=  parseFloat(animSpeed);; 
 
       }else if(startAnimation && positionAnimZ) {
 
-        meshRef.current.position.z += 0.01;
+        meshRef.current.position.z +=  parseFloat(animSpeed);;
         meshRef.current.position.x = 0;
         meshRef.current.position.y = 0; 
 

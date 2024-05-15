@@ -28,7 +28,7 @@ const [active, setActive] = useState(null);
  const { setTorus, setSphere, setBox, setPlane, setSelectedTexture, img, url,
    setWireframe, wireframe, animation, setAnimation, setRotationAnimX ,
   setRotationAnimY, setRotationAnimZ, setPositionAnimX, setPositionAnimY, 
-  setPositionAnimZ} = useContext(MeshContext);
+  setPositionAnimZ, setAnimSpeed, animSpeed} = useContext(MeshContext);
 
    // apply matcaps
    const applyMatcap = (textureUrl) => {
@@ -85,6 +85,13 @@ const [active, setActive] = useState(null);
       setPositionAnimY(false);
       setPositionAnimZ(true);
     }
+   
+ }
+
+
+ // close modals
+ const closeModals = () => {
+   setAnimation(false);
    
  }
     
@@ -182,11 +189,13 @@ const [active, setActive] = useState(null);
       <p className='cursor-pointer duration-500 w-24 text-center rounded-md ease hover:bg-gray-500' onClick={() => setAnimation(true)}>Animation</p>
 
       {animation && <div className='absolute mt-12 right-4'>
+        
            <p className='text-center'>Animation</p>
-           <div className='bg-black opacity-70 p-4 rounded-md'>
+           <div className='bg-black opacity-70 p-4 rounded-md flex flex-col gap-2'>
+           <span className='absolute right-4 top-8 cursor-pointer' onClick={closeModals}>X</span>
             <div className='flex gap-4'>
               <span> speed:</span>
-              <input type='number'  className='w-24 outline-none' />
+              <input type='number' step={0.01} value = {animSpeed} onChange={(e) => setAnimSpeed(e.target.value)}  className='w-24 outline-none text-black' />
               </div>
 
               <div className='flex gap-4'>
