@@ -27,7 +27,8 @@ const [active, setActive] = useState(null);
  // use context
  const { setTorus, setSphere, setBox, setPlane, setSelectedTexture, img, url,
    setWireframe, wireframe, animation, setAnimation, setRotationAnimX ,
-  setRotationAnimY, setRotationAnimZ} = useContext(MeshContext);
+  setRotationAnimY, setRotationAnimZ, setPositionAnimX, setPositionAnimY, 
+  setPositionAnimZ} = useContext(MeshContext);
 
    // apply matcaps
    const applyMatcap = (textureUrl) => {
@@ -65,6 +66,24 @@ const [active, setActive] = useState(null);
       setRotationAnimX(false);
       setRotationAnimY(false);
       setRotationAnimZ(true);
+    }
+
+    if(index === 4) {
+      setPositionAnimX(true);
+      setPositionAnimY(false);
+      setPositionAnimZ(false);
+    }
+
+    if(index === 5) {
+      setPositionAnimX(false);
+      setPositionAnimY(true);
+      setPositionAnimZ(false);
+    }
+
+    if(index === 6) {
+      setPositionAnimX(false);
+      setPositionAnimY(false);
+      setPositionAnimZ(true);
     }
    
  }
@@ -171,9 +190,18 @@ const [active, setActive] = useState(null);
               </div>
 
               <div className='flex gap-4'>
-              <span onClick={() => handleActive(1)} className={active === 1 ? 'active' : ''} style={{cursor: 'pointer', padding: '4px'}}>Rotate on X:</span>
-              <span onClick={() => handleActive(2)} className={active === 2 ? 'active' : ''} style={{cursor: 'pointer', padding: '4px'}}>Rotate on Y:</span>
-              <span onClick={() => handleActive(3)} className={active === 3 ? 'active' : '' } style={{cursor: 'pointer', padding: '4px'}}>Rotate on Z:</span>
+              <span onClick={() => handleActive(1)} className={active === 1 ? 'active' : ''} style={{cursor: 'pointer', padding: '4px'}}>Rotate on X</span>
+              <span onClick={() => handleActive(2)} className={active === 2 ? 'active' : ''} style={{cursor: 'pointer', padding: '4px'}}>Rotate on Y</span>
+              <span onClick={() => handleActive(3)} className={active === 3 ? 'active' : '' } style={{cursor: 'pointer', padding: '4px'}}>Rotate on Z</span>
+             
+            
+              </div>
+
+              <div className='flex gap-4'>
+              <span onClick={() => handleActive(4)} className={active === 4 ? 'active' : ''} style={{cursor: 'pointer', padding: '4px'}}>Position X</span>
+              <span onClick={() => handleActive(5)} className={active === 5 ? 'active' : ''} style={{cursor: 'pointer', padding: '4px'}}>Position Y</span>
+              <span onClick={() => handleActive(6)} className={active === 6 ? 'active' : '' } style={{cursor: 'pointer', padding: '4px'}}>Position Z</span>
+             
               
               </div>
            </div>

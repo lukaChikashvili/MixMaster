@@ -24,7 +24,7 @@ const Main = () => {
        meshColor, metalness, roughness, planeColor, positionX, positionY, positionZ, scaleX, 
        scaleY, scaleZ, rotateX, rotateY, rotateZ, duplicatedMesh, setArrowPressed, selectedTexture, 
        url, setUrl,  setSelectedTexture, wireframe, startAnimation, rotationAnimX, rotationAnimY,
-        rotationAnimZ} = useContext(MeshContext);
+        rotationAnimZ, positionAnimX, positionAnimY, positionAnimZ} = useContext(MeshContext);
 
 
     // mesh animation
@@ -45,6 +45,24 @@ const Main = () => {
         meshRef.current.rotation.z += 0.01;
         meshRef.current.rotation.x = 0;
         meshRef.current.rotation.y = 0; 
+
+      }else if(startAnimation && positionAnimX) {
+
+        meshRef.current.position.z = 0;
+        meshRef.current.position.x += 0.01;
+        meshRef.current.position.y = 0; 
+
+      }else if(startAnimation && positionAnimY) {
+
+        meshRef.current.position.z = 0;
+        meshRef.current.position.x = 0;
+        meshRef.current.position.y += 0.01; 
+
+      }else if(startAnimation && positionAnimZ) {
+
+        meshRef.current.position.z += 0.01;
+        meshRef.current.position.x = 0;
+        meshRef.current.position.y = 0; 
 
       }
     })
