@@ -70,8 +70,8 @@ const MeshProvider = ({children}) => {
 
     //  rotation animations
     const [rotationAnimX, setRotationAnimX] = useState(false);
-
-   
+    const [rotationAnimY, setRotationAnimY] = useState(false);
+    const [rotationAnimZ, setRotationAnimZ] = useState(false);
 
     return (
         <MeshContext.Provider value={{planeColor, updatePlaneColor, roughness, setRoughness, 
@@ -80,7 +80,8 @@ const MeshProvider = ({children}) => {
              positionZ, setPositionZ, scaleX, setScaleX, scaleY, setScaleY, scaleZ, setScaleZ, rotateX,
               rotateY, rotateZ, setRotateX, setRotateY, setRotateZ, duplicatedMesh, addDuplicatedMesh,
             arrowPressed, setArrowPressed, selectedTexture, setSelectedTexture, img, setImg, url, setUrl,
-          wireframe, setWireframe, animation, setAnimation, startAnimation, setStartAnimation, rotationAnimX, setRotationAnimX}}
+          wireframe, setWireframe, animation, setAnimation, startAnimation, setStartAnimation, rotationAnimX,
+           setRotationAnimX, rotationAnimY, setRotationAnimY, rotationAnimZ, setRotationAnimZ}}
         >
        {children}
        </MeshContext.Provider>

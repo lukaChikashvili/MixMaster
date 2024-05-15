@@ -23,13 +23,29 @@ const Main = () => {
     const { torus, sphere, setSphere, setTorus, box , setBox, plane, setPlane,
        meshColor, metalness, roughness, planeColor, positionX, positionY, positionZ, scaleX, 
        scaleY, scaleZ, rotateX, rotateY, rotateZ, duplicatedMesh, setArrowPressed, selectedTexture, 
-       url, setUrl,  setSelectedTexture, wireframe, startAnimation} = useContext(MeshContext);
+       url, setUrl,  setSelectedTexture, wireframe, startAnimation, rotationAnimX, rotationAnimY,
+        rotationAnimZ} = useContext(MeshContext);
 
 
     // mesh animation
     useFrame(() => {
-      if(startAnimation) {
-        meshRef.current.rotation.y += 0.01;
+      
+      if( startAnimation && rotationAnimX ) {
+
+        meshRef.current.rotation.x += 0.01;
+
+      }else if(startAnimation && rotationAnimY) {
+
+        meshRef.current.rotation.y += 0.01; 
+        meshRef.current.rotation.x = 0;
+        
+
+      }else if(startAnimation && rotationAnimZ) {
+
+        meshRef.current.rotation.z += 0.01;
+        meshRef.current.rotation.x = 0;
+        meshRef.current.rotation.y = 0; 
+
       }
     })
 

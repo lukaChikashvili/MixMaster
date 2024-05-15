@@ -7,7 +7,7 @@ import torusImg from '../assets/torus.png';
 import { MeshContext } from '../context/meshContext';
 import LanguageIcon from '@mui/icons-material/Language';
 import { Tooltip } from '@mui/material';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+
 
 
 
@@ -25,7 +25,9 @@ const [active, setActive] = useState(null);
 
 
  // use context
- const { setTorus, setSphere, setBox, setPlane, setSelectedTexture, img, url, setWireframe, wireframe, animation, setAnimation, setStartAnimation } = useContext(MeshContext);
+ const { setTorus, setSphere, setBox, setPlane, setSelectedTexture, img, url,
+   setWireframe, wireframe, animation, setAnimation, setRotationAnimX ,
+  setRotationAnimY, setRotationAnimZ} = useContext(MeshContext);
 
    // apply matcaps
    const applyMatcap = (textureUrl) => {
@@ -46,6 +48,24 @@ const [active, setActive] = useState(null);
 
  const handleActive = (index) => {
     setActive(index);
+
+    if(index === 1) {
+      setRotationAnimX(true);
+      setRotationAnimY(false);
+      setRotationAnimZ(false);
+    }
+
+    if(index === 2) {
+      setRotationAnimX(false);
+      setRotationAnimY(true);
+      setRotationAnimZ(false);
+    }
+
+    if(index === 3) {
+      setRotationAnimX(false);
+      setRotationAnimY(false);
+      setRotationAnimZ(true);
+    }
    
  }
     
@@ -153,7 +173,7 @@ const [active, setActive] = useState(null);
               <div className='flex gap-4'>
               <span onClick={() => handleActive(1)} className={active === 1 ? 'active' : ''} style={{cursor: 'pointer', padding: '4px'}}>Rotate on X:</span>
               <span onClick={() => handleActive(2)} className={active === 2 ? 'active' : ''} style={{cursor: 'pointer', padding: '4px'}}>Rotate on Y:</span>
-              <span onClick={() => handleActive(3)}className={active === 3 ? 'active' : '' } style={{cursor: 'pointer', padding: '4px'}}>Rotate on Z:</span>
+              <span onClick={() => handleActive(3)} className={active === 3 ? 'active' : '' } style={{cursor: 'pointer', padding: '4px'}}>Rotate on Z:</span>
               
               </div>
            </div>
