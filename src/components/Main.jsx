@@ -23,7 +23,7 @@ const Main = () => {
     const { torus, sphere, setSphere, setTorus, box , setBox, plane, setPlane,
        meshColor, metalness, roughness, planeColor, positionX, positionY, positionZ, scaleX, 
        scaleY, scaleZ, rotateX, rotateY, rotateZ, duplicatedMesh, setArrowPressed, selectedTexture, 
-       url, img, setSelectedTexture} = useContext(MeshContext);
+       url, setUrl,  setSelectedTexture} = useContext(MeshContext);
 
 
          // right arrow click
@@ -132,7 +132,7 @@ const Main = () => {
             if(t) {
            
               setSelectedTexture('');
-           
+              setUrl('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PFRUWFhURFRUYHSggGBolHRUVITEhJSkrLi4uFx8zODMtNygtLisBCgoKDQ0NDg0NDisZFRkyKzctNy0rKy03LS0tKysrLS0tLS03KzctKys3LSs3KzcrLS03NystKysrKys3KysrK//AABEIAOEA4QMBIgACEQEDEQH/xAAYAAEBAQEBAAAAAAAAAAAAAAABAAIDBv/EABYQAQEBAAAAAAAAAAAAAAAAAAARAf/EABYBAQEBAAAAAAAAAAAAAAAAAAABAv/EABURAQEAAAAAAAAAAAAAAAAAAAAR/9oADAMBAAIRAxEAPwD12hrQihEKBFAEkCBQCIgEkgQKAIgEkgCKECKAJIEkQBRB01HQjQRCiBQgRQBEChFCANAAigCSBAoAigCIBIoQJICkQddDWhGmU0ACMQBEAEUADSBlECBFAEUoEYoABQBFAEUARQJGAHfQdSKyigCKABqAAigAKABoAEUARQgDQBAoAioARQBEgEYgdUdAoRQBFAA0ACKBlFAA0gZRQBFAEQARQgRQBGGAyVCAiJB00RoCpJAIoUAgKAIqAyigAaABQoAigCKAQNRAzE0gCKEChQJIg6BrcCKEYgCKBlQpQREAEYgCKBlFAEUARUARFQAoYgEUKEChUBQFA6hoIoRQBFAyoUARACIxAFCgAhhBlQkGU0gZRSgRQBFCBEgEUDoCkUKGIBEVAZTQAIoAGhAERQBFQAoiARAIRoAEUAUKUBKgAqISNoqIoRQBQoGUYoARQMkgBEUARUBlNRAASABQBNAEojFBEUAiKBtGKIBFAymgARQBEQAigCKAIiAkUADQAIxACkCBhUERQCBpA2ikAkQAKAKFAA0ACKAIoAGgAiKAIoAoUAUKAIoEkVAjEDaIQQKAIoBAUARQBJAEUARQBFAEUASQJJAlEgSKUSUINI6EAigCKAAoAigCIBJIECgBiQBFAEkARSgKMAFIEiQKCQRCBJIEtSAIoAkgQSBIoEMKAIoAkgCKUBSApJApJR//2Q==');
               setArrowPressed('T');
             }
          }, [t]);

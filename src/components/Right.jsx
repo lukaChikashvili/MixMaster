@@ -182,7 +182,7 @@ const Right = () => {
 <h1 className='text-xl text-white mt-4 flex items-center gap-4'>Set image as a texture <InsertPhotoIcon className='cursor-pointer duration-500 ease hover:text-green-500' onClick = {() => setImg(!img)} /></h1>
 
 {img && <div>
-      <input type='text' className='outline-none rounded-md mt-4' onChange={(e) => setUrl(e.target.value)} />
+      <input type='text' className='outline-none rounded-md mt-4' placeholder='Enter image url' onChange={(e) => setUrl(e.target.value)} />
   </div>}
     </div>
   )

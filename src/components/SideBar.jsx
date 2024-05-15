@@ -21,7 +21,7 @@ const [moreTextures, setMoreTextures] = useState(false);
 
 
  // use context
- const { setTorus, setSphere, setBox, setPlane, setSelectedTexture } = useContext(MeshContext);
+ const { setTorus, setSphere, setBox, setPlane, setSelectedTexture, img, url } = useContext(MeshContext);
 
    // apply matcaps
    const applyMatcap = (textureUrl) => {
@@ -121,7 +121,10 @@ const [moreTextures, setMoreTextures] = useState(false);
     </div>}
       
 
-
+     {img && <div className='absolute right-4 top-12'>
+         <p className='text-center underline underline-offset-8 duration-500 ease-in hover:decoration-wavy'>Image preview</p>
+         <img src = {url} className='w-36 h-24 object-cover mt-4 rounded-md shadow-lg'/>
+      </div>}
    
     </div>
   )
