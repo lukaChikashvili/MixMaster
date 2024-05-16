@@ -28,7 +28,7 @@ const [active, setActive] = useState(null);
  const { setTorus, setSphere, setBox, setPlane, setSelectedTexture, img, url,
    setWireframe, wireframe, animation, setAnimation, setRotationAnimX ,
   setRotationAnimY, setRotationAnimZ, setPositionAnimX, setPositionAnimY, 
-  setPositionAnimZ, setAnimSpeed,  setText, text} = useContext(MeshContext);
+  setPositionAnimZ, setAnimSpeed,  setText, text, setTextSample} = useContext(MeshContext);
 
    // apply matcaps
    const applyMatcap = (textureUrl) => {
@@ -236,7 +236,7 @@ const [active, setActive] = useState(null);
        <p>Modify the text</p>
 
        <div className='bg-black opacity-70 p-4 rounded-md flex flex-col gap-2'>
-          <input type='text' placeholder='Enter text..' className='outline-none rounded-md px-2 text-black' />
+          <input type='text' placeholder='Enter text..' className='outline-none rounded-md px-2 text-black' onChange={(e) => setTextSample(e.target.value)}/>
        </div>
     </div>}
        

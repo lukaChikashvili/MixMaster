@@ -1,3 +1,4 @@
+
 import { createContext, useState } from "react";
 
 
@@ -83,6 +84,10 @@ const MeshProvider = ({children}) => {
 
     // 3d text
     const [text, setText] = useState(false);
+    const [textSample, setTextSample] = useState('Enter text');
+
+
+
 
     return (
         <MeshContext.Provider value={{planeColor, updatePlaneColor, roughness, setRoughness, 
@@ -94,7 +99,7 @@ const MeshProvider = ({children}) => {
           wireframe, setWireframe, animation, setAnimation, startAnimation, setStartAnimation, rotationAnimX,
            setRotationAnimX, rotationAnimY, setRotationAnimY, rotationAnimZ, setRotationAnimZ, positionAnimX, 
           setPositionAnimX, positionAnimY, setPositionAnimY, positionAnimZ, setPositionAnimZ, animSpeed, setAnimSpeed,
-          text, setText }}
+          text, setText, textSample, setTextSample }}
         >
        {children}
        </MeshContext.Provider>
