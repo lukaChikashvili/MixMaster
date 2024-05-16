@@ -1,5 +1,5 @@
 
-import React, { useContext, useState } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import cube from '../assets/cube.png';
 import square from '../assets/square.png';
 import sphere from '../assets/sphere.png';
@@ -7,6 +7,7 @@ import torusImg from '../assets/torus.png';
 import { MeshContext } from '../context/meshContext';
 import LanguageIcon from '@mui/icons-material/Language';
 import { TextField, Tooltip } from '@mui/material';
+import FormatColorTextIcon from '@mui/icons-material/FormatColorText';
 
 
 
@@ -28,7 +29,7 @@ const [active, setActive] = useState(null);
  const { setTorus, setSphere, setBox, setPlane, setSelectedTexture, img, url,
    setWireframe, wireframe, animation, setAnimation, setRotationAnimX ,
   setRotationAnimY, setRotationAnimZ, setPositionAnimX, setPositionAnimY, 
-  setPositionAnimZ, setAnimSpeed,  setText, text, setTextSample} = useContext(MeshContext);
+  setPositionAnimZ, setAnimSpeed,  setText, text, setTextSample,  setBevelThick} = useContext(MeshContext);
 
    // apply matcaps
    const applyMatcap = (textureUrl) => {
@@ -100,11 +101,21 @@ const [active, setActive] = useState(null);
    
  }
 
+ let textModal = useRef(null);
+
+ const [showIcon, setShowIcon] = useState(false);
 
  // close modals
  const closeModals = () => {
    setAnimation(false);
+   textModal.current.style.display = "none";
+   setShowIcon(true);
    
+ }
+
+ const hideIcon = () => {
+  textModal.current.style.display = "block";
+  setShowIcon(false);
  }
     
   return (
@@ -232,13 +243,20 @@ const [active, setActive] = useState(null);
          onClick={() => setText(true)} >3D Text</p>
 
 
-  {text && <div className='absolute mt-12 right-4'>
-       <p>Modify the text</p>
+  {text && <div className='absolute mt-12 right-4 ' ref = {textModal}>
+       <p className='text-center'>Modify the text</p>
 
        <div className='bg-black opacity-70 p-4 rounded-md flex flex-col gap-2'>
-          <input type='text' placeholder='Enter text..' className='outline-none rounded-md px-2 text-black' onChange={(e) => setTextSample(e.target.value)}/>
+       <span className='absolute right-4 top-8 cursor-pointer ' onClick={closeModals}>X</span>
+          <input type='text' placeholder='Enter text..' className='outline-none rounded-md px-2 text-black mt-8' onChange={(e) => setTextSample(e.target.value)}/>
+         <div className='flex gap-4'>
+          <span>Bevel thickness: </span>
+          <input type='number' step = "0.01" onChange={(e) => setBevelThick(e.target.value)} className='w-24 outline-none rounded-md px-2 text-black' />
+          </div>
        </div>
     </div>}
+
+    {showIcon && <FormatColorTextIcon className='absolute right-4 top-20 cursor-pointer' onClick = {hideIcon} />}
        
     </div>
   )

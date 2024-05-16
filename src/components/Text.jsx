@@ -5,7 +5,8 @@ import { MeshContext } from '../context/meshContext'
 const Text = () => {
 
     const { textSample, scaleX, scaleY, scaleZ, positionX, positionY, positionZ, 
-        rotateX, rotateY, rotateZ, meshColor, metalness, roughness,  wireframe, selectedTexture } = useContext(MeshContext);
+        rotateX, rotateY, rotateZ, meshColor, metalness, roughness,  wireframe, selectedTexture,
+    bevelThick } = useContext(MeshContext);
 
         const [ matcap ] = useMatcapTexture(selectedTexture, 256);
 
@@ -21,7 +22,9 @@ const Text = () => {
      position-z = {positionZ}
      rotation-x = {rotateX}
      rotation-y = {rotateY}
-     rotation-z = {rotateZ}>
+     rotation-z = {rotateZ}
+     bevelEnabled
+     bevelThickness={bevelThick} >
      {textSample}
 
      {selectedTexture ? (<meshMatcapMaterial matcap={matcap} />) :

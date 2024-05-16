@@ -3,6 +3,8 @@ import Main from "./components/Main";
 import SideBar from "./components/SideBar";
 import Right from "./components/Right";
 import LeftSidebar from "./components/LeftSidebar";
+import { useContext } from "react";
+import { MeshContext } from "./context/meshContext";
 
 
 
@@ -10,10 +12,10 @@ import LeftSidebar from "./components/LeftSidebar";
 
 function App() {
 
-
+     const { background } = useContext(MeshContext);
   return (
     <>
-    <div className="App">
+    <div className="App" style={{backgroundColor: background}} >
   
          <Canvas>
            <Main />

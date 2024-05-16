@@ -86,7 +86,15 @@ const MeshProvider = ({children}) => {
     const [text, setText] = useState(false);
     const [textSample, setTextSample] = useState('Enter text');
 
+    // bevel thickness
+    const [bevelThick, setBevelThick] = useState(0);
 
+    // background color
+    const [background, setBackground] = useState('');
+
+    const updateBackgroundColor = (color) => {
+       setBackground(color);
+    }
 
 
     return (
@@ -99,7 +107,7 @@ const MeshProvider = ({children}) => {
           wireframe, setWireframe, animation, setAnimation, startAnimation, setStartAnimation, rotationAnimX,
            setRotationAnimX, rotationAnimY, setRotationAnimY, rotationAnimZ, setRotationAnimZ, positionAnimX, 
           setPositionAnimX, positionAnimY, setPositionAnimY, positionAnimZ, setPositionAnimZ, animSpeed, setAnimSpeed,
-          text, setText, textSample, setTextSample }}
+          text, setText, textSample, setTextSample, bevelThick, setBevelThick, background, setBackground, updateBackgroundColor }}
         >
        {children}
        </MeshContext.Provider>

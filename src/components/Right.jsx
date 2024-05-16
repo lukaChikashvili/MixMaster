@@ -9,9 +9,10 @@ const Right = () => {
  
   const { updateMeshColor, meshColor, setMetalness, setRoughness, updatePlaneColor, planeColor, setPositionX,
           setPositionY, setPositionZ, setScaleX, setScaleY, setScaleZ, setRotateX, setRotateY, setRotateZ,
-           addDuplicatedMesh , metalness, roughness, setImg, img, url, setUrl} = useContext(MeshContext);
+           addDuplicatedMesh , metalness, roughness, setImg, img, url, setUrl, background, updateBackgroundColor} = useContext(MeshContext);
 
   const [showRGB, setShowRGB] = useState(false);
+  const [showRGB2, setShowRGB2] = useState(false);
   const [planeRgb, setPlaneRgb] = useState(false);
   
   const [location, setLocation] = useState(false);
@@ -27,6 +28,10 @@ const Right = () => {
   const handlePlaneColor = (color) => {
      updatePlaneColor(color);
 
+  }
+
+  const handleBackground = (color) => {
+     updateBackgroundColor(color);
   }
 
 
@@ -184,6 +189,28 @@ const Right = () => {
 {img && <div>
       <input type='text' className='outline-none rounded-md mt-4' placeholder='Enter image url' onChange={(e) => setUrl(e.target.value)} />
   </div>}
+
+  
+  <div className='flex gap-4 items-center '>
+   <h1 className='text-xl text-white mt-4 flex items-center gap-4'>Background color:  </h1>
+       <div className={`w-24 h-6  rounded-md cursor-pointer mt-4`} style={{backgroundColor: !background ? 'white' : background}} onClick={() => setShowRGB2(!showRGB2)}></div>
+       
+       </div>
+
+       <div className='flex gap-4 pb-6 mt-4'>
+          <div className='w-6 h-6 rounded-full bg-red-500 border-2 cursor-pointer duration-500 ease-in hover:border-white' onClick={() => handleBackground('red')} ></div>
+          <div className='w-6 h-6 rounded-full bg-blue-500 border-2 cursor-pointer duration-500 ease-in hover:border-white'  onClick={() => handleBackground('blue')}></div>
+          <div className='w-6 h-6 rounded-full bg-green-500 border-2 cursor-pointer duration-500 ease-in hover:border-white'  onClick={() => handleBackground('green')}></div>
+          <div className='w-6 h-6 rounded-full bg-purple-500 border-2 cursor-pointer duration-500 ease-in hover:border-white'  onClick={() => handleBackground('purple')}></div>
+          <div className='w-6 h-6 rounded-full bg-orange-500 border-2 cursor-pointer duration-500 ease-in hover:border-white'  onClick={() => handleBackground('orange')}></div>
+          <div className='w-6 h-6 rounded-full bg-pink-500 border-2 cursor-pointer duration-500 ease-in hover:border-white'  onClick={() => handleBackground('pink')}></div>
+        </div>
+
+       {showRGB2 && (
+          <div className='mt-6'>
+            <HexColorPicker color = {background} onChange={updateBackgroundColor} />
+          </div>
+       )}
     </div>
   )
 }
