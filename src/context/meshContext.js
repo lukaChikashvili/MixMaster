@@ -81,6 +81,9 @@ const MeshProvider = ({children}) => {
     // animation speed
     const [animSpeed, setAnimSpeed] = useState(null);
 
+    // 3d text
+    const [text, setText] = useState(false);
+
     return (
         <MeshContext.Provider value={{planeColor, updatePlaneColor, roughness, setRoughness, 
             torus, setTorus, sphere, setSphere, box, setBox, plane, setPlane, meshColor, 
@@ -90,7 +93,8 @@ const MeshProvider = ({children}) => {
             arrowPressed, setArrowPressed, selectedTexture, setSelectedTexture, img, setImg, url, setUrl,
           wireframe, setWireframe, animation, setAnimation, startAnimation, setStartAnimation, rotationAnimX,
            setRotationAnimX, rotationAnimY, setRotationAnimY, rotationAnimZ, setRotationAnimZ, positionAnimX, 
-          setPositionAnimX, positionAnimY, setPositionAnimY, positionAnimZ, setPositionAnimZ, animSpeed, setAnimSpeed}}
+          setPositionAnimX, positionAnimY, setPositionAnimY, positionAnimZ, setPositionAnimZ, animSpeed, setAnimSpeed,
+          text, setText }}
         >
        {children}
        </MeshContext.Provider>

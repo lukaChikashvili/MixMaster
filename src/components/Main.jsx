@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
-import { Html, OrbitControls, Text, useMatcapTexture, useTexture } from '@react-three/drei';
+import { Html, OrbitControls, useMatcapTexture, useTexture } from '@react-three/drei';
 import gridImg from '../assets/grid.png';
 import { useFrame, useLoader } from '@react-three/fiber';
 import { TextureLoader, axesHelper, DoubleSide, MeshMatcapMaterial } from 'three';
@@ -7,6 +7,8 @@ import { Button } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { MeshContext } from '../context/meshContext';
 import { useKeyPress  } from 'react-use';
+import Text from './Text';
+
 
 const Main = () => {
     const [cube, setCube] = useState(true);
@@ -24,7 +26,7 @@ const Main = () => {
        meshColor, metalness, roughness, planeColor, positionX, positionY, positionZ, scaleX, 
        scaleY, scaleZ, rotateX, rotateY, rotateZ, duplicatedMesh, setArrowPressed, selectedTexture, 
        url, setUrl,  setSelectedTexture, wireframe, startAnimation, rotationAnimX, rotationAnimY,
-        rotationAnimZ, positionAnimX, positionAnimY, positionAnimZ, animSpeed} = useContext(MeshContext);
+        rotationAnimZ, positionAnimX, positionAnimY, positionAnimZ, animSpeed, text} = useContext(MeshContext);
 
 
     // mesh animation
@@ -79,13 +81,16 @@ const Main = () => {
     const z = useKeyPress('z');
     const zero = useKeyPress('0');
     const t = useKeyPress('t');
+
  
   
     let meshRef = useRef();
 
+
+
     // move right
    useEffect(() => {
-      if(rightClick) {
+      if(cube && rightClick) {
         meshRef.current.position.x += 0.5;
         setArrowPressed('Arrow right' );
       }
@@ -93,7 +98,7 @@ const Main = () => {
 
 // move left
    useEffect(() => {
-      if(leftClick) {
+      if(cube && leftClick) {
         meshRef.current.position.x -= 0.5;
         setArrowPressed('Arrow left');
       }
@@ -101,7 +106,7 @@ const Main = () => {
 
    // move up
    useEffect(() => {
-    if(upClick) {
+    if(cube && upClick) {
       meshRef.current.position.y += 0.5;
       setArrowPressed('Arrow up');
     }
@@ -109,7 +114,7 @@ const Main = () => {
 
       // move down
       useEffect(() => {
-        if(downClick) {
+        if(cube && downClick) {
           meshRef.current.position.y -= 0.5;
           setArrowPressed('Arrow down');
         }
@@ -117,7 +122,7 @@ const Main = () => {
     
     // scale
     useEffect(() => {
-      if(s) {
+      if(cube && s) {
         meshRef.current.scale.x += 0.5;
         meshRef.current.scale.y += 0.5;
         meshRef.current.scale.z += 0.5;
@@ -127,7 +132,7 @@ const Main = () => {
   
         // scale x
         useEffect(() => {
-          if(x) {
+          if(cube && x) {
             meshRef.current.scale.x += 0.5;
          
             setArrowPressed('X');
@@ -136,7 +141,7 @@ const Main = () => {
       
        // back to normal
        useEffect(() => {
-        if(zero) {
+        if(cube && zero) {
           meshRef.current.scale.x = 1;
           meshRef.current.scale.y = 1;
           meshRef.current.scale.z = 1;
@@ -151,7 +156,7 @@ const Main = () => {
        
        // scale y
        useEffect(() => {
-        if(y) {
+        if(cube && y) {
        
           meshRef.current.scale.y += 0.5;
        
@@ -162,7 +167,7 @@ const Main = () => {
     
         // scale z
         useEffect(() => {
-          if(z) {
+          if(cube && z) {
          
             meshRef.current.scale.z += 0.5;
          
@@ -172,16 +177,15 @@ const Main = () => {
       
           // remove texture
           useEffect(() => {
-            if(t) {
+            if(cube && t) {
            
               setSelectedTexture('');
               setUrl('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PFRUWFhURFRUYHSggGBolHRUVITEhJSkrLi4uFx8zODMtNygtLisBCgoKDQ0NDg0NDisZFRkyKzctNy0rKy03LS0tKysrLS0tLS03KzctKys3LSs3KzcrLS03NystKysrKys3KysrK//AABEIAOEA4QMBIgACEQEDEQH/xAAYAAEBAQEBAAAAAAAAAAAAAAABAAIDBv/EABYQAQEBAAAAAAAAAAAAAAAAAAARAf/EABYBAQEBAAAAAAAAAAAAAAAAAAABAv/EABURAQEAAAAAAAAAAAAAAAAAAAAR/9oADAMBAAIRAxEAPwD12hrQihEKBFAEkCBQCIgEkgQKAIgEkgCKECKAJIEkQBRB01HQjQRCiBQgRQBEChFCANAAigCSBAoAigCIBIoQJICkQddDWhGmU0ACMQBEAEUADSBlECBFAEUoEYoABQBFAEUARQJGAHfQdSKyigCKABqAAigAKABoAEUARQgDQBAoAioARQBEgEYgdUdAoRQBFAA0ACKBlFAA0gZRQBFAEQARQgRQBGGAyVCAiJB00RoCpJAIoUAgKAIqAyigAaABQoAigCKAQNRAzE0gCKEChQJIg6BrcCKEYgCKBlQpQREAEYgCKBlFAEUARUARFQAoYgEUKEChUBQFA6hoIoRQBFAyoUARACIxAFCgAhhBlQkGU0gZRSgRQBFCBEgEUDoCkUKGIBEVAZTQAIoAGhAERQBFQAoiARAIRoAEUAUKUBKgAqISNoqIoRQBQoGUYoARQMkgBEUARUBlNRAASABQBNAEojFBEUAiKBtGKIBFAymgARQBEQAigCKAIiAkUADQAIxACkCBhUERQCBpA2ikAkQAKAKFAA0ACKAIoAGgAiKAIoAoUAUKAIoEkVAjEDaIQQKAIoBAUARQBJAEUARQBFAEUASQJJAlEgSKUSUINI6EAigCKAAoAigCIBJIECgBiQBFAEkARSgKMAFIEiQKCQRCBJIEtSAIoAkgQSBIoEMKAIoAkgCKUBSApJApJR//2Q==');
               setArrowPressed('T');
             }
          }, [t]);
-        
-       
-   
+
+    
  
     
 
@@ -263,6 +267,15 @@ const Main = () => {
           
       
         }
+
+
+    
+   {text && <Text />}
+
+
+
+
+
 
 {duplicatedMesh.map((mesh, index) => (
         <mesh key={index} position={[index * 2, 0, 0 ]}>

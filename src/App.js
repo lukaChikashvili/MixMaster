@@ -7,6 +7,7 @@ import LeftSidebar from "./components/LeftSidebar";
 
 
 
+
 function App() {
 
 
@@ -16,6 +17,7 @@ function App() {
   
          <Canvas>
            <Main />
+           
          </Canvas>
         
        

@@ -6,7 +6,7 @@ import sphere from '../assets/sphere.png';
 import torusImg from '../assets/torus.png';
 import { MeshContext } from '../context/meshContext';
 import LanguageIcon from '@mui/icons-material/Language';
-import { Tooltip } from '@mui/material';
+import { TextField, Tooltip } from '@mui/material';
 
 
 
@@ -28,7 +28,7 @@ const [active, setActive] = useState(null);
  const { setTorus, setSphere, setBox, setPlane, setSelectedTexture, img, url,
    setWireframe, wireframe, animation, setAnimation, setRotationAnimX ,
   setRotationAnimY, setRotationAnimZ, setPositionAnimX, setPositionAnimY, 
-  setPositionAnimZ, setAnimSpeed, animSpeed} = useContext(MeshContext);
+  setPositionAnimZ, setAnimSpeed,  setText, text} = useContext(MeshContext);
 
    // apply matcaps
    const applyMatcap = (textureUrl) => {
@@ -72,18 +72,30 @@ const [active, setActive] = useState(null);
       setPositionAnimX(true);
       setPositionAnimY(false);
       setPositionAnimZ(false);
+
+      setRotationAnimX(false);
+      setRotationAnimY(false);
+      setRotationAnimZ(false);
     }
 
     if(index === 5) {
       setPositionAnimX(false);
       setPositionAnimY(true);
       setPositionAnimZ(false);
+
+      setRotationAnimX(false);
+      setRotationAnimY(false);
+      setRotationAnimZ(false);
     }
 
     if(index === 6) {
       setPositionAnimX(false);
       setPositionAnimY(false);
       setPositionAnimZ(true);
+
+      setRotationAnimX(false);
+      setRotationAnimY(false);
+      setRotationAnimZ(false);
     }
    
  }
@@ -195,7 +207,7 @@ const [active, setActive] = useState(null);
            <span className='absolute right-4 top-8 cursor-pointer' onClick={closeModals}>X</span>
             <div className='flex gap-4'>
               <span> speed:</span>
-              <input type='number' step={0.01} value = {animSpeed} onChange={(e) => setAnimSpeed(e.target.value)}  className='w-24 outline-none text-black' />
+              <input type='number' step={0.01}  onChange={(e) => setAnimSpeed(e.target.value)}  className='w-24 outline-none text-black' />
               </div>
 
               <div className='flex gap-4'>
@@ -216,7 +228,17 @@ const [active, setActive] = useState(null);
            </div>
         </div>}
 
+        <p className='cursor-pointer duration-500 w-24 text-center rounded-md ease hover:bg-gray-500'
+         onClick={() => setText(true)} >3D Text</p>
 
+
+  {text && <div className='absolute mt-12 right-4'>
+       <p>Modify the text</p>
+
+       <div className='bg-black opacity-70 p-4 rounded-md flex flex-col gap-2'>
+          <input type='text' placeholder='Enter text..' className='outline-none rounded-md px-2 text-black' />
+       </div>
+    </div>}
        
     </div>
   )
