@@ -106,6 +106,7 @@ const MeshProvider = ({children}) => {
     // canvas ref
 let canvas = useRef(null);
 
+
     return (
         <MeshContext.Provider value={{planeColor, updatePlaneColor, roughness, setRoughness, 
             torus, setTorus, sphere, setSphere, box, setBox, plane, setPlane, meshColor, 

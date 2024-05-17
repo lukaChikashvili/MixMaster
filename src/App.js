@@ -15,7 +15,7 @@ function App() {
      const { background, canvas } = useContext(MeshContext);
   return (
     <>
-    <div className="App"   style={{backgroundColor: background}} >
+    <div className="App"  style={{backgroundColor: background}} >
   
          <Canvas ref = {canvas}  gl={{ preserveDrawingBuffer: true }}>
            <Main />

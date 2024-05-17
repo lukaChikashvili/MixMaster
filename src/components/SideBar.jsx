@@ -10,6 +10,7 @@ import { Button, Tooltip } from '@mui/material';
 import FormatColorTextIcon from '@mui/icons-material/FormatColorText';
 import Grid3x3Icon from '@mui/icons-material/Grid3x3';
 import { useScreenshot } from 'use-react-screenshot';
+import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
 
 
 
@@ -32,21 +33,33 @@ const [render, setRender] = useState(false);
  const { setTorus, setSphere, setBox, setPlane, setSelectedTexture, img, url,
    setWireframe, wireframe, animation, setAnimation, setRotationAnimX ,
   setRotationAnimY, setRotationAnimZ, setPositionAnimX, setPositionAnimY, 
-  setPositionAnimZ, setAnimSpeed,  setText, text, setTextSample,  setBevelThick, setRemoveGrid, removeGrid, canvas} = useContext(MeshContext);
+  setPositionAnimZ, setAnimSpeed,  setText, text, setTextSample,  setBevelThick, setRemoveGrid, removeGrid, canvas, appRef} = useContext(MeshContext);
 
 // image modal
 const [imgModal, setImgModal] = useState(false);
 
 
 // take screenshot
-const [image, takeScreenshot] = useScreenshot();
+const [image, takeScreenshot] = useScreenshot({
+  type: 'image/png',
+  quality: 1.0
+ });
 
 const takeImage = () => {
   takeScreenshot(canvas.current).then((img) => {
     setImgModal(true);
+   
+   
   });
 };
 
+// download image
+const downloadImg = () => {
+  const downloadLink = document.createElement('a');
+  downloadLink.href = image;
+  downloadLink.download = image;
+  downloadLink.click();
+}
 
    // apply matcaps
    const applyMatcap = (textureUrl) => {
@@ -291,7 +304,9 @@ const takeImage = () => {
 {imgModal && <div className='absolute  bg-black p-2   flex flex-wrap gap-24 rounded-md  mt-24 w-4/5 ml-28 select-none '>
   <span className='absolute z-10 text-black text-xl font-bold left-4 cursor-pointer' onClick={() => setImgModal(false)}>X</span>
     <img src = {image} />
-    
+    <Tooltip title = "Download image">
+    <CloudDownloadIcon className='absolute text-white z-10 bottom-4 text-2xl right-8 cursor-pointer duration-500 ease-in hover:text-green-500' onClick = {downloadImg} />
+    </Tooltip>
     </div>}
     </div>
   )
