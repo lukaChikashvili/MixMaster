@@ -8,6 +8,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { MeshContext } from '../context/meshContext';
 import { useKeyPress  } from 'react-use';
 import Text from './Text';
+import { NumbersOutlined } from '@mui/icons-material';
 
 
 const Main = () => {
@@ -26,7 +27,7 @@ const Main = () => {
        meshColor, metalness, roughness, planeColor, positionX, positionY, positionZ, scaleX, 
        scaleY, scaleZ, rotateX, rotateY, rotateZ, duplicatedMesh, setArrowPressed, selectedTexture, 
        url, setUrl,  setSelectedTexture, wireframe, startAnimation, rotationAnimX, rotationAnimY,
-        rotationAnimZ, positionAnimX, positionAnimY, positionAnimZ, animSpeed, text} = useContext(MeshContext);
+        rotationAnimZ, positionAnimX, positionAnimY, positionAnimZ, animSpeed, text, removeGrid} = useContext(MeshContext);
 
 
     // mesh animation
@@ -237,8 +238,11 @@ const Main = () => {
 
      <mesh receiveShadow position-y={ - 1 } rotation-x={ - Math.PI * 0.5 } scale={ 20 } >
             <planeGeometry  />
-            <meshStandardMaterial map = {grid}  color = {planeColor} side={DoubleSide}  />
-           <axesHelper />
+
+         <meshStandardMaterial  color = {planeColor} side={DoubleSide}  />
+       
+         
+         {!removeGrid && <axesHelper /> }  
         </mesh>
 
 {cube &&  <mesh position-x={ positionX } 

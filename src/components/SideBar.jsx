@@ -1,13 +1,14 @@
 
-import React, { useContext, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import cube from '../assets/cube.png';
 import square from '../assets/square.png';
 import sphere from '../assets/sphere.png';
 import torusImg from '../assets/torus.png';
 import { MeshContext } from '../context/meshContext';
 import LanguageIcon from '@mui/icons-material/Language';
-import { TextField, Tooltip } from '@mui/material';
+import { Tooltip } from '@mui/material';
 import FormatColorTextIcon from '@mui/icons-material/FormatColorText';
+import Grid3x3Icon from '@mui/icons-material/Grid3x3';
 
 
 
@@ -29,7 +30,7 @@ const [active, setActive] = useState(null);
  const { setTorus, setSphere, setBox, setPlane, setSelectedTexture, img, url,
    setWireframe, wireframe, animation, setAnimation, setRotationAnimX ,
   setRotationAnimY, setRotationAnimZ, setPositionAnimX, setPositionAnimY, 
-  setPositionAnimZ, setAnimSpeed,  setText, text, setTextSample,  setBevelThick} = useContext(MeshContext);
+  setPositionAnimZ, setAnimSpeed,  setText, text, setTextSample,  setBevelThick, setRemoveGrid, removeGrid} = useContext(MeshContext);
 
    // apply matcaps
    const applyMatcap = (textureUrl) => {
@@ -117,7 +118,8 @@ const [active, setActive] = useState(null);
   textModal.current.style.display = "block";
   setShowIcon(false);
  }
-    
+
+
   return (
 <div className='absolute top-0 left-0 bg-[#435055] opacity-90   text-white w-full p-2 flex '>
        <p className='cursor-pointer duration-500 w-24 text-center rounded-md ease hover:bg-gray-500' onClick={() => setMeshModal(!meshModal)}>Add</p>
@@ -258,6 +260,9 @@ const [active, setActive] = useState(null);
 
     {showIcon && <FormatColorTextIcon className='absolute right-4 top-20 cursor-pointer' onClick = {hideIcon} />}
        
+  <Tooltip title = "Grid">
+<Grid3x3Icon className='absolute right-16 cursor-pointer opacity-50 duration-500 ease hover:opacity-100' onClick = {() => setRemoveGrid(!removeGrid)} />
+</Tooltip>
     </div>
   )
 }

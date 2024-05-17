@@ -96,6 +96,12 @@ const MeshProvider = ({children}) => {
        setBackground(color);
     }
 
+    // toggle grid
+    const [removeGrid, setRemoveGrid] = useState(false);
+
+
+    // timer
+    const [timer, setTimer] = useState(0.00);
 
     return (
         <MeshContext.Provider value={{planeColor, updatePlaneColor, roughness, setRoughness, 
@@ -107,7 +113,8 @@ const MeshProvider = ({children}) => {
           wireframe, setWireframe, animation, setAnimation, startAnimation, setStartAnimation, rotationAnimX,
            setRotationAnimX, rotationAnimY, setRotationAnimY, rotationAnimZ, setRotationAnimZ, positionAnimX, 
           setPositionAnimX, positionAnimY, setPositionAnimY, positionAnimZ, setPositionAnimZ, animSpeed, setAnimSpeed,
-          text, setText, textSample, setTextSample, bevelThick, setBevelThick, background, setBackground, updateBackgroundColor }}
+          text, setText, textSample, setTextSample, bevelThick, setBevelThick, background, setBackground, updateBackgroundColor,
+         removeGrid, setRemoveGrid, timer, setTimer }}
         >
        {children}
        </MeshContext.Provider>
