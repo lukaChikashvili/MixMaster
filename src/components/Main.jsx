@@ -27,7 +27,9 @@ const Main = () => {
        meshColor, metalness, roughness, planeColor, positionX, positionY, positionZ, scaleX, 
        scaleY, scaleZ, rotateX, rotateY, rotateZ, duplicatedMesh, setArrowPressed, selectedTexture, 
        url, setUrl,  setSelectedTexture, wireframe, startAnimation, rotationAnimX, rotationAnimY,
-        rotationAnimZ, positionAnimX, positionAnimY, positionAnimZ, animSpeed, text, removeGrid} = useContext(MeshContext);
+        rotationAnimZ, positionAnimX, positionAnimY, positionAnimZ, animSpeed, text, removeGrid, canvas} = useContext(MeshContext);
+
+
 
 
     // mesh animation
@@ -217,6 +219,7 @@ const Main = () => {
 
   return (
     <>
+    
     <OrbitControls makeDefault />
 
    
@@ -239,7 +242,7 @@ const Main = () => {
      <mesh receiveShadow position-y={ - 1 } rotation-x={ - Math.PI * 0.5 } scale={ 20 } >
             <planeGeometry  />
 
-         <meshStandardMaterial  color = {planeColor} side={DoubleSide}  />
+         <meshStandardMaterial map = {grid} color = {planeColor} side={DoubleSide}  />
        
          
          {!removeGrid && <axesHelper /> }  
@@ -355,7 +358,6 @@ const Main = () => {
                </Html>}
 
              
-       
     </>
   )
 }

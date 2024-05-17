@@ -1,5 +1,5 @@
 
-import { createContext, useState } from "react";
+import { createContext, useRef, useState } from "react";
 
 
 export const MeshContext = createContext();
@@ -103,6 +103,9 @@ const MeshProvider = ({children}) => {
     // timer
     const [timer, setTimer] = useState(0.00);
 
+    // canvas ref
+let canvas = useRef(null);
+
     return (
         <MeshContext.Provider value={{planeColor, updatePlaneColor, roughness, setRoughness, 
             torus, setTorus, sphere, setSphere, box, setBox, plane, setPlane, meshColor, 
@@ -114,7 +117,7 @@ const MeshProvider = ({children}) => {
            setRotationAnimX, rotationAnimY, setRotationAnimY, rotationAnimZ, setRotationAnimZ, positionAnimX, 
           setPositionAnimX, positionAnimY, setPositionAnimY, positionAnimZ, setPositionAnimZ, animSpeed, setAnimSpeed,
           text, setText, textSample, setTextSample, bevelThick, setBevelThick, background, setBackground, updateBackgroundColor,
-         removeGrid, setRemoveGrid, timer, setTimer }}
+         removeGrid, setRemoveGrid, timer, setTimer, canvas }}
         >
        {children}
        </MeshContext.Provider>

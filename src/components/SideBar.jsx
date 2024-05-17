@@ -6,9 +6,10 @@ import sphere from '../assets/sphere.png';
 import torusImg from '../assets/torus.png';
 import { MeshContext } from '../context/meshContext';
 import LanguageIcon from '@mui/icons-material/Language';
-import { Tooltip } from '@mui/material';
+import { Button, Tooltip } from '@mui/material';
 import FormatColorTextIcon from '@mui/icons-material/FormatColorText';
 import Grid3x3Icon from '@mui/icons-material/Grid3x3';
+import { useScreenshot } from 'use-react-screenshot';
 
 
 
@@ -24,13 +25,28 @@ const [moreTextures, setMoreTextures] = useState(false);
 
 const [active, setActive] = useState(null);
   
-
+// render modal
+const [render, setRender] = useState(false);
 
  // use context
  const { setTorus, setSphere, setBox, setPlane, setSelectedTexture, img, url,
    setWireframe, wireframe, animation, setAnimation, setRotationAnimX ,
   setRotationAnimY, setRotationAnimZ, setPositionAnimX, setPositionAnimY, 
-  setPositionAnimZ, setAnimSpeed,  setText, text, setTextSample,  setBevelThick, setRemoveGrid, removeGrid} = useContext(MeshContext);
+  setPositionAnimZ, setAnimSpeed,  setText, text, setTextSample,  setBevelThick, setRemoveGrid, removeGrid, canvas} = useContext(MeshContext);
+
+// image modal
+const [imgModal, setImgModal] = useState(false);
+
+
+// take screenshot
+const [image, takeScreenshot] = useScreenshot();
+
+const takeImage = () => {
+  takeScreenshot(canvas.current).then((img) => {
+    setImgModal(true);
+  });
+};
+
 
    // apply matcaps
    const applyMatcap = (textureUrl) => {
@@ -121,7 +137,7 @@ const [active, setActive] = useState(null);
 
 
   return (
-<div className='absolute top-0 left-0 bg-[#435055] opacity-90   text-white w-full p-2 flex '>
+<div className='absolute top-0 left-0 bg-[#435055] opacity-100   text-white w-full p-2 flex '>
        <p className='cursor-pointer duration-500 w-24 text-center rounded-md ease hover:bg-gray-500' onClick={() => setMeshModal(!meshModal)}>Add</p>
 
       <div className='flex ' >
@@ -263,6 +279,20 @@ const [active, setActive] = useState(null);
   <Tooltip title = "Grid">
 <Grid3x3Icon className='absolute right-16 cursor-pointer opacity-50 duration-500 ease hover:opacity-100' onClick = {() => setRemoveGrid(!removeGrid)} />
 </Tooltip>
+
+<p className='cursor-pointer duration-500 w-24 text-center rounded-md ease hover:bg-gray-500' onClick={() => setRender(!render)}>Render</p>
+
+{render && <div className='absolute mt-12 right-4 flex gap-4 items-center'>
+    <p>Render image: </p>
+    <Button variant = "contained" size='small' onClick={takeImage}>Render</Button>
+  </div>}
+
+
+{imgModal && <div className='absolute  bg-black p-2   flex flex-wrap gap-24 rounded-md  mt-24 w-4/5 ml-28 select-none '>
+  <span className='absolute z-10 text-black text-xl font-bold left-4 cursor-pointer' onClick={() => setImgModal(false)}>X</span>
+    <img src = {image} />
+    
+    </div>}
     </div>
   )
 }

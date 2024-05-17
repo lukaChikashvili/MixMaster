@@ -12,12 +12,12 @@ import { MeshContext } from "./context/meshContext";
 
 function App() {
 
-     const { background } = useContext(MeshContext);
+     const { background, canvas } = useContext(MeshContext);
   return (
     <>
-    <div className="App" style={{backgroundColor: background}} >
+    <div className="App"   style={{backgroundColor: background}} >
   
-         <Canvas>
+         <Canvas ref = {canvas}  gl={{ preserveDrawingBuffer: true }}>
            <Main />
            
          </Canvas>
