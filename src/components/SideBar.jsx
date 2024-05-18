@@ -423,8 +423,8 @@ className='absolute  bg-black p-12 flex flex-col gap-24 rounded-md  mt-48 w-4/5 
     <div className='flex gap-4 pt-8 justify-center'>
       <span className='text-xl'>{geo ? 'ენა:' : 'Language:'} </span>
       
-        <Button variant='contained' size='small'  onClick={() => setGeo(false)}>{geo ? 'ინგლისური' : 'English'}</Button>
-        <Button variant="outlined"  size='small' onClick={() => setGeo(true)}>{geo ? 'ქართული' : 'Georgian'}</Button>
+        <Button variant={!geo ? 'contained' : 'outlined'} size='small'  onClick={() => setGeo(false)}>{geo ? 'ინგლისური' : 'English'}</Button>
+        <Button variant={geo ? 'contained' : 'outlined'}  size='small' onClick={() => setGeo(true)}>{geo ? 'ქართული' : 'Georgian'}</Button>
         </div>
      </motion.div>
 }
