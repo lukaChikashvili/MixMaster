@@ -106,6 +106,9 @@ const MeshProvider = ({children}) => {
     // canvas ref
 let canvas = useRef(null);
 
+// language
+const [geo, setGeo] = useState(false);
+
 
     return (
         <MeshContext.Provider value={{planeColor, updatePlaneColor, roughness, setRoughness, 
@@ -118,7 +121,7 @@ let canvas = useRef(null);
            setRotationAnimX, rotationAnimY, setRotationAnimY, rotationAnimZ, setRotationAnimZ, positionAnimX, 
           setPositionAnimX, positionAnimY, setPositionAnimY, positionAnimZ, setPositionAnimZ, animSpeed, setAnimSpeed,
           text, setText, textSample, setTextSample, bevelThick, setBevelThick, background, setBackground, updateBackgroundColor,
-         removeGrid, setRemoveGrid, timer, setTimer, canvas }}
+         removeGrid, setRemoveGrid, timer, setTimer, canvas, geo, setGeo }}
         >
        {children}
        </MeshContext.Provider>

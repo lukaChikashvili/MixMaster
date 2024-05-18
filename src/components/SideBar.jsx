@@ -13,7 +13,7 @@ import { useScreenshot } from 'use-react-screenshot';
 import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import { ArrowBack, ArrowDownward, ArrowForward,  ArrowUpward } from '@mui/icons-material';
-
+import { motion } from 'framer-motion';
 
 
 
@@ -36,7 +36,8 @@ const [render, setRender] = useState(false);
  const { setTorus, setSphere, setBox, setPlane, setSelectedTexture, img, url,
    setWireframe, wireframe, animation, setAnimation, setRotationAnimX ,
   setRotationAnimY, setRotationAnimZ, setPositionAnimX, setPositionAnimY, 
-  setPositionAnimZ, setAnimSpeed,  setText, text, setTextSample,  setBevelThick, setRemoveGrid, removeGrid, canvas, appRef} = useContext(MeshContext);
+  setPositionAnimZ, setAnimSpeed,  setText, text, setTextSample,  setBevelThick, setRemoveGrid, 
+  removeGrid, canvas, setGeo, geo} = useContext(MeshContext);
 
 // image modal
 const [imgModal, setImgModal] = useState(false);
@@ -176,10 +177,14 @@ const downloadImg = () => {
 
   return (
 <div className='absolute top-0 left-0 bg-[#435055] opacity-100   text-white w-full p-2 flex '>
+  {geo ?  <p className='cursor-pointer duration-500 w-24 text-center rounded-md ease hover:bg-gray-500' onClick={() => setMeshModal(!meshModal)}>დამატება</p> :
        <p className='cursor-pointer duration-500 w-24 text-center rounded-md ease hover:bg-gray-500' onClick={() => setMeshModal(!meshModal)}>Add</p>
-
+  }
       <div className='flex ' >
-         {meshModal && <div className='flex absolute top-12 left-4 bg-white rounded-md gap-8 p-4'>
+         {meshModal && <motion.div initial = {{opacity: 0}}
+                animate = {{opacity: 1}}
+                transition={{duration: 1, delay: 0.4}} 
+         className='flex absolute top-12 left-4 bg-white rounded-md gap-8 p-4'>
              <div className='flex flex-col items-center  gap-4' onClick={() => setBox(true)}>
                <img src = {cube} className='w-24' />
                <span className='text-center'>Cube</span>
@@ -201,13 +206,16 @@ const downloadImg = () => {
                </div>
 
              
-            </div>}
+            </motion.div>}
 
-            
+            {geo ?  <p className='cursor-pointer duration-500 w-24 text-center rounded-md ease hover:bg-gray-500' onClick={() => setTextureModal(!textureModal)} >კომპოზიცია</p> :
             <p className='cursor-pointer duration-500 w-24 text-center rounded-md ease hover:bg-gray-500' onClick={() => setTextureModal(!textureModal)} >Textures</p>
-          
+}
            {
-            textureModal && <div className='absolute top-16 left-4 flex gap-8 bg-black p-2 rounded-md'>
+            textureModal && <motion.div initial = {{opacity: 0}}
+            animate = {{opacity: 1}}
+            transition={{duration: 1, delay: 0.4}}
+            className='absolute top-16 left-4 flex gap-8 bg-black p-2 rounded-md'>
               <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/15100F_241D1B_292424_2C2C27.jpg" onClick={() => applyMatcap('15100F_241D1B_292424_2C2C27')}  className='rounded-full w-24 cursor-pointer'/>
               <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/167E76_36D6D2_23B2AC_27C1BE.jpg" onClick={() => applyMatcap('167E76_36D6D2_23B2AC_27C1BE')} className='rounded-full w-24 cursor-pointer'/>
               <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/17395A_7EBCC7_4D8B9F_65A1B5.jpg" onClick={() => applyMatcap('17395A_7EBCC7_4D8B9F_65A1B5')} className='rounded-full w-24 cursor-pointer'/>
@@ -216,13 +224,16 @@ const downloadImg = () => {
               <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/1B1B1B_515151_7E7E7E_6C6C6C.jpg" onClick={() => applyMatcap('1B1B1B_515151_7E7E7E_6C6C6C')} className='rounded-full w-24 cursor-pointer'/>
               <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/1B1B1B_999999_575757_747474.jpg" onClick={() => applyMatcap('1B1B1B_999999_575757_747474')} className='rounded-full w-24 cursor-pointer'/>
               <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/1C70C6_09294C_0F3F73_52B3F6.jpg" onClick={() => applyMatcap('1C70C6_09294C_0F3F73_52B3F6')} className='rounded-full w-24 cursor-pointer'/>
-              <h2 className='mt-8 cursor-pointer font-bold underline underline-offset-4 duration-500 ease-in hover:decoration-wavy' onClick={showMoreTextures}>More textures</h2>
-              </div>
+              <h2 className='mt-8 cursor-pointer font-bold underline underline-offset-4 duration-500 ease-in hover:decoration-wavy' onClick={showMoreTextures}>{geo ? 'მეტი' : 'More textures'}</h2>
+              </motion.div>
            }
 
 
       </div>
-    {moreTextures && <div className='absolute  bg-black p-12   flex flex-wrap gap-24 rounded-md  overflow-auto max-h-56 w-4/5 ml-28 textureModal ' style={{marginTop: '480px'}} >
+    {moreTextures && <motion.div initial = {{opacity: 0}}
+                animate = {{opacity: 1}}
+                transition={{duration: 1, delay: 0.4}}
+     className='absolute  bg-black p-12   flex flex-wrap gap-24 rounded-md  overflow-auto max-h-56 w-4/5 ml-28 textureModal ' style={{marginTop: '480px'}} >
          <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/5A492B_DEC583_987D4D_AC9C74.jpg" className='rounded-full w-36 cursor-pointer' onClick={() => applyMatcap('5A492B_DEC583_987D4D_AC9C74')}/>
          <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/5A643B_454D2C_393F25_202315.jpg" className='rounded-full w-36 cursor-pointer' onClick={() => applyMatcap('5A643B_454D2C_393F25_202315')}/>
          <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/5B4CBC_B59AF2_9B84EB_8F78E4.jpg" className='rounded-full w-36 cursor-pointer' onClick={() => applyMatcap('5B4CBC_B59AF2_9B84EB_8F78E4')}/>
@@ -253,109 +264,121 @@ const downloadImg = () => {
          <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/3E3E3E_AEAEAE_848484_777777.jpg" className='rounded-full w-36 cursor-pointer' onClick={() => applyMatcap('3E3E3E_AEAEAE_848484_777777')}/>
          <img src = "https://github.com/nidorx/matcaps/raw/master/thumbnail/422509_C89536_824512_0A0604.jpg" className='rounded-full w-36 cursor-pointer' onClick={() => applyMatcap('422509_C89536_824512_0A0604')}/>
          <span className='absolute text-white left-4 top-4 text-xl cursor-pointer' onClick={() => setMoreTextures(false)}>X</span>
-    </div>}
+    </motion.div>}
       
 
      {img && <div className='absolute right-4 top-12'>
-         <p className='text-center underline underline-offset-8 duration-500 ease-in hover:decoration-wavy'>Image preview</p>
+         <p className='text-center underline underline-offset-8 duration-500 ease-in hover:decoration-wavy'>{geo ? 'გადახედვა' : 'Image preview'}</p>
          <img src = {url} className='w-36 h-24 object-cover mt-4 rounded-md shadow-lg'/>
       </div>}
 
-      <Tooltip title= "Wireframe mode" >
+      <Tooltip title= {geo ? "კარკასი" : "Wireframe mode"} >
       <LanguageIcon className='absolute right-4 cursor-pointer opacity-50 duration-500 ease hover:opacity-100' onClick = {() => setWireframe(!wireframe)}/>
       </Tooltip>
 
-      <p className='cursor-pointer duration-500 w-24 text-center rounded-md ease hover:bg-gray-500' onClick={() => setAnimation(true)}>Animation</p>
+      <p className='cursor-pointer duration-500 w-24 text-center rounded-md ease hover:bg-gray-500' onClick={() => setAnimation(true)}>{geo ? 'ანიმაცია' : 'Animation'}</p>
 
-      {animation && <div className='absolute mt-12 right-4'>
+      {animation && <motion.div nitial = {{opacity: 0}}
+                animate = {{opacity: 1}}
+                transition={{duration: 1, delay: 0.4}}
+      className='absolute mt-12 right-4'>
         
-           <p className='text-center'>Animation</p>
+           <p className='text-center'>{geo ? 'ანიმაცია' : 'Animation'}</p>
            <div className='bg-black opacity-70 p-4 rounded-md flex flex-col gap-2'>
            <span className='absolute right-4 top-8 cursor-pointer' onClick={closeModals}>X</span>
             <div className='flex gap-4'>
-              <span> speed:</span>
+              <span> {geo ? 'სიჩქარე:' : 'speed:'}</span>
               <input type='number' step={0.01}  onChange={(e) => setAnimSpeed(e.target.value)}  className='w-24 outline-none text-black' />
               </div>
 
               <div className='flex gap-4'>
-              <span onClick={() => handleActive(1)} className={active === 1 ? 'active' : ''} style={{cursor: 'pointer', padding: '4px'}}>Rotate on X</span>
-              <span onClick={() => handleActive(2)} className={active === 2 ? 'active' : ''} style={{cursor: 'pointer', padding: '4px'}}>Rotate on Y</span>
-              <span onClick={() => handleActive(3)} className={active === 3 ? 'active' : '' } style={{cursor: 'pointer', padding: '4px'}}>Rotate on Z</span>
+              <span onClick={() => handleActive(1)} className={active === 1 ? 'active' : ''} style={{cursor: 'pointer', padding: '4px'}}>{geo ? 'ბრუნვა X ღერძზე' : 'Rotate on X'}</span>
+              <span onClick={() => handleActive(2)} className={active === 2 ? 'active' : ''} style={{cursor: 'pointer', padding: '4px'}}>{geo ? 'ბრუნვა Y ღერძზე' : 'Rotate on Y'}</span>
+              <span onClick={() => handleActive(3)} className={active === 3 ? 'active' : '' } style={{cursor: 'pointer', padding: '4px'}}>{geo ? 'ბრუნვა Z ღერძზე' : 'Rotate on Z'}</span>
              
             
               </div>
 
               <div className='flex gap-4'>
-              <span onClick={() => handleActive(4)} className={active === 4 ? 'active' : ''} style={{cursor: 'pointer', padding: '4px'}}>Position X</span>
-              <span onClick={() => handleActive(5)} className={active === 5 ? 'active' : ''} style={{cursor: 'pointer', padding: '4px'}}>Position Y</span>
-              <span onClick={() => handleActive(6)} className={active === 6 ? 'active' : '' } style={{cursor: 'pointer', padding: '4px'}}>Position Z</span>
+              <span onClick={() => handleActive(4)} className={active === 4 ? 'active' : ''} style={{cursor: 'pointer', padding: '4px'}}>{geo ? 'მოძრაობა X ღერძზე' : 'Position X'}</span>
+              <span onClick={() => handleActive(5)} className={active === 5 ? 'active' : ''} style={{cursor: 'pointer', padding: '4px'}}>{geo ? 'მოძრაობა Y ღერძზე' : 'Position Y'}</span>
+              <span onClick={() => handleActive(6)} className={active === 6 ? 'active' : '' } style={{cursor: 'pointer', padding: '4px'}}>{geo ? 'მოძრაობა Z ღერძზე' : 'Position Z'}</span>
              
               
               </div>
            </div>
-        </div>}
+        </motion.div>}
 
         <p className='cursor-pointer duration-500 w-24 text-center rounded-md ease hover:bg-gray-500'
-         onClick={() => setText(true)} >3D Text</p>
+         onClick={() => setText(true)} >{geo ? '3დ ტექსტი' : '3D Text'}</p>
 
 
-  {text && <div className='absolute mt-12 right-4 ' ref = {textModal}>
-       <p className='text-center'>Modify the text</p>
+  {text && <motion.div nitial = {{opacity: 0}}
+                animate = {{opacity: 1}}
+                transition={{duration: 1, delay: 0.8}}
+  className='absolute mt-12 right-4 ' ref = {textModal}>
+       <p className='text-center'>{geo ? 'შეცვალე ტექსტი' : 'Modify the text'}</p>
 
        <div className='bg-black opacity-70 p-4 rounded-md flex flex-col gap-2'>
        <span className='absolute right-4 top-8 cursor-pointer ' onClick={closeModals}>X</span>
-          <input type='text' placeholder='Enter text..' className='outline-none rounded-md px-2 text-black mt-8' onChange={(e) => setTextSample(e.target.value)}/>
+          <input type='text' placeholder={geo ? 'შეიყვანე ტექსტი..' :'Enter text..'} className='outline-none rounded-md px-2 text-black mt-8' onChange={(e) => setTextSample(e.target.value)}/>
          <div className='flex gap-4'>
-          <span>Bevel thickness: </span>
+          <span>{geo ? 'კუთხის სისქე:' : 'Bevel thickness:'} </span>
           <input type='number' step = "0.01" onChange={(e) => setBevelThick(e.target.value)} className='w-24 outline-none rounded-md px-2 text-black' />
           </div>
        </div>
-    </div>}
+    </motion.div>}
 
     {showIcon && <FormatColorTextIcon className='absolute right-4 top-20 cursor-pointer' onClick = {hideIcon} />}
        
-  <Tooltip title = "Grid">
+  <Tooltip title = {geo ? "ღერძი" : "Grid"}>
 <Grid3x3Icon className='absolute right-16 cursor-pointer opacity-50 duration-500 ease hover:opacity-100' onClick = {() => setRemoveGrid(!removeGrid)} />
 </Tooltip>
 
-<p className='cursor-pointer duration-500 w-24 text-center rounded-md ease hover:bg-gray-500' onClick={() => setRender(!render)}>Render</p>
+<p className='cursor-pointer duration-500 w-24 text-center rounded-md ease hover:bg-gray-500' onClick={() => setRender(!render)}>{geo ? "რენდერი" : "Render"}</p>
 
 {render && <div className='absolute mt-12 right-4 flex gap-4 items-center'>
-    <p>Render image: </p>
-    <Button variant = "contained" size='small' onClick={takeImage}>Render</Button>
+    <p>{geo ? 'რენდერი:' : 'Render image:'} </p>
+    <Button variant = "contained" size='small' onClick={takeImage}>{geo ? 'რენდერი' : 'Render'}</Button>
   </div>}
 
 
-{imgModal && <div className='absolute  bg-black p-2   flex flex-wrap gap-24 rounded-md  mt-24 w-4/5 ml-28 select-none '>
+{imgModal && <motion.div initial = {{opacity: 0}}
+                animate = {{opacity: 1}}
+                transition={{duration: 1, delay: 0.4}}
+ className='absolute  bg-black p-2   flex flex-wrap gap-24 rounded-md  mt-24 w-4/5 ml-28 select-none '>
   <span className='absolute z-10 text-black text-xl font-bold left-4 cursor-pointer' onClick={() => setImgModal(false)}>X</span>
     <img src = {image} />
-    <Tooltip title = "Download image">
+    <Tooltip title = {geo ? "სურათის ჩამოტვირთვა" : 'Download image'}>
     <CloudDownloadIcon className='absolute text-white z-10 bottom-4 text-2xl right-8 cursor-pointer duration-500 ease-in hover:text-green-500' onClick = {downloadImg} />
     </Tooltip>
-    </div>}
+    </motion.div>}
 
-<Tooltip title = "Shortcuts">
+<Tooltip title = {geo ? 'ღილაკები' : "Shortcuts"}>
 <HelpOutlineIcon className='absolute right-28 cursor-pointer opacity-50 duration-500 ease hover:opacity-100' onClick = {() => setShortcut(!shortcut)} />
 </Tooltip>
 
-{shortcut && <div className='absolute  bg-black p-12 flex flex-col gap-24 rounded-md  mt-48 w-4/5 ml-28 select-none'>
+{shortcut && <motion.div initial = {{opacity: 0}}
+                animate = {{opacity: 1}}
+                transition={{duration: 1, delay: 0.4}}
+className='absolute  bg-black p-12 flex flex-col gap-24 rounded-md  mt-48 w-4/5 ml-28 select-none'>
   <span className='absolute right-4 top-4 cursor-pointer text-2xl' onClick={() => setShortcut(false)}>X</span>
-  <h1 className='underline underline-offset-8 cursor-pointer duration-500 ease-in hover:decoration-wavy'>Keyboard shortcuts</h1>
+  <h1 className='underline underline-offset-8 cursor-pointer duration-500 ease-in hover:decoration-wavy'>{geo ? 'შორთქათები' : 'Keyboard shortcuts'}</h1>
   <div className='flex gap-8'>
     <div className='flex flex-col gap-4'>
      <div className='flex items-center gap-4'>
        <h2 className='text-3xl border-2 w-12 h-12 text-center rounded-md flex items-center cursor-pointer  justify-center shadow-lg duration-500 ease-in-out hover:bg-white hover:text-black hover:font-bold '>X</h2>
-       <p className='text-xl'>Scale mesh on X axis</p>
+       <p className='text-xl'>{geo ? 'ფიგურის გადიდება X ღერძზე' : 'Scale mesh on X axis'}</p>
       </div>
 
       <div className='flex items-center gap-4'>
        <h2 className='text-3xl border-2 w-12 h-12 text-center rounded-md flex items-center cursor-pointer  justify-center shadow-lg duration-500 ease-in-out hover:bg-white hover:text-black hover:font-bold '>Y</h2>
-       <p className='text-xl'>Scale mesh on Y axis</p>
+       <p className='text-xl'>{geo ? 'ფიგურის გადიდება Y ღერძზე' : 'Scale mesh on Y axis'}</p>
       </div>
 
       <div className='flex items-center gap-4'>
        <h2 className='text-3xl border-2 w-12 h-12 text-center rounded-md flex items-center cursor-pointer  justify-center shadow-lg duration-500 ease-in-out hover:bg-white hover:text-black hover:font-bold '>Z</h2>
-       <p className='text-xl'>Scale mesh on Z axis</p>
+       <p className='text-xl'>{geo ? 'ფიგურის გადიდება Z ღერძზე' : 'Scale mesh on Z axis'}</p>
       </div>
 
     </div>
@@ -363,17 +386,17 @@ const downloadImg = () => {
     <div className='flex flex-col gap-4'>
      <div className='flex items-center gap-4'>
        <h2 className='text-3xl border-2 w-12 h-12 text-center rounded-md flex items-center cursor-pointer  justify-center shadow-lg duration-500 ease-in-out hover:bg-white hover:text-black hover:font-bold '>T</h2>
-       <p className='text-xl'>Back to normal</p>
+       <p className='text-xl'>{geo ? 'უკან დაბრუნება' : 'Back to normal'}</p>
       </div>
 
       <div className='flex items-center gap-4'>
        <h2 className='text-3xl border-2 w-12 h-12 text-center rounded-md flex items-center cursor-pointer  justify-center shadow-lg duration-500 ease-in-out hover:bg-white hover:text-black hover:font-bold '>0</h2>
-       <p className='text-xl'>Initial position</p>
+       <p className='text-xl'>{geo ? 'საწყისი პოზიცია' : 'Initial position'}</p>
       </div>
 
       <div className='flex items-center gap-4'>
        <h2 className='text-3xl border-2 w-12 h-12 text-center rounded-md flex items-center cursor-pointer  justify-center shadow-lg duration-500 ease-in-out hover:bg-white hover:text-black hover:font-bold '>S</h2>
-       <p className='text-xl'>Scale on all axis</p>
+      <p className='text-xl'>{geo ? 'ყველა ღერძზე გადიდება' : 'Scale on all axis'}</p>
       </div>
 
     </div>
@@ -386,21 +409,24 @@ const downloadImg = () => {
       <ArrowUpward   sx={{fontSize: '50px'}} className=' absolute bottom-16 left-12 ml-5 border-2 w-12 h-12 text-center rounded-md flex items-center cursor-pointer  justify-center shadow-lg duration-500 ease-in-out hover:bg-white hover:text-black hover:font-bold' />
    
     </div>
-    <p className='absolute bottom-12 right-32'>Move mesh on X, Y, and Z axis</p>
+    <p className='absolute bottom-12 right-32'>{geo ? '' : 'Move mesh on X, Y, and Z axis'}</p>
  
-  </div>}
+  </motion.div>}
 
 {banner && 
-    <div className='absolute  bg-black pb-12  gap-24 rounded-md  mt-36  ml-72 select-none' ref={bannerRef}>
+    <motion.div initial = {{opacity: 0}}
+                animate = {{opacity: 1}}
+                transition={{duration: 1, delay: 0.6}}
+    className='absolute  bg-black pb-12  gap-24 rounded-md  mt-36  ml-72 select-none' ref={bannerRef}>
      <img src = "./logo.png" className='  ' style={{width: '600px', height: '300px', objectFit: 'fill'}}/>
-     <h1 className='text-white text-2xl text-center pt-8'>Welcome to MixMaster</h1>
+     <h1 className='text-white text-2xl text-center pt-8'>{geo ? 'მოგესალმებათ მიქსმასტერი' : 'Welcome to MixMaster'}</h1>
     <div className='flex gap-4 pt-8 justify-center'>
-      <span className='text-xl'>Language: </span>
+      <span className='text-xl'>{geo ? 'ენა:' : 'Language:'} </span>
       
-        <Button variant='contained' size='small'>English</Button>
-        <Button variant="outlined"  size='small'>Georgian</Button>
+        <Button variant='contained' size='small'  onClick={() => setGeo(false)}>{geo ? 'ინგლისური' : 'English'}</Button>
+        <Button variant="outlined"  size='small' onClick={() => setGeo(true)}>{geo ? 'ქართული' : 'Georgian'}</Button>
         </div>
-     </div>
+     </motion.div>
 }
     </div>
   )
