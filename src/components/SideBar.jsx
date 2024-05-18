@@ -11,6 +11,8 @@ import FormatColorTextIcon from '@mui/icons-material/FormatColorText';
 import Grid3x3Icon from '@mui/icons-material/Grid3x3';
 import { useScreenshot } from 'use-react-screenshot';
 import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import { ArrowBack, ArrowDownward, ArrowForward, ArrowLeft, ArrowUpward } from '@mui/icons-material';
 
 
 
@@ -148,6 +150,8 @@ const downloadImg = () => {
   setShowIcon(false);
  }
 
+ // shortcuts
+ const [shortcut, setShortcut] = useState(false);
 
   return (
 <div className='absolute top-0 left-0 bg-[#435055] opacity-100   text-white w-full p-2 flex '>
@@ -308,6 +312,62 @@ const downloadImg = () => {
     <CloudDownloadIcon className='absolute text-white z-10 bottom-4 text-2xl right-8 cursor-pointer duration-500 ease-in hover:text-green-500' onClick = {downloadImg} />
     </Tooltip>
     </div>}
+
+<Tooltip title = "Shortcuts">
+<HelpOutlineIcon className='absolute right-28 cursor-pointer opacity-50 duration-500 ease hover:opacity-100' onClick = {() => setShortcut(!shortcut)} />
+</Tooltip>
+
+{shortcut && <div className='absolute  bg-black p-12 flex flex-col gap-24 rounded-md  mt-48 w-4/5 ml-28 select-none'>
+  <span className='absolute right-4 top-4 cursor-pointer text-2xl' onClick={() => setShortcut(false)}>X</span>
+  <h1 className='underline underline-offset-8 cursor-pointer duration-500 ease-in hover:decoration-wavy'>Keyboard shortcuts</h1>
+  <div className='flex gap-8'>
+    <div className='flex flex-col gap-4'>
+     <div className='flex items-center gap-4'>
+       <h2 className='text-3xl border-2 w-12 h-12 text-center rounded-md flex items-center cursor-pointer  justify-center shadow-lg duration-500 ease-in-out hover:bg-white hover:text-black hover:font-bold '>X</h2>
+       <p className='text-xl'>Scale mesh on X axis</p>
+      </div>
+
+      <div className='flex items-center gap-4'>
+       <h2 className='text-3xl border-2 w-12 h-12 text-center rounded-md flex items-center cursor-pointer  justify-center shadow-lg duration-500 ease-in-out hover:bg-white hover:text-black hover:font-bold '>Y</h2>
+       <p className='text-xl'>Scale mesh on Y axis</p>
+      </div>
+
+      <div className='flex items-center gap-4'>
+       <h2 className='text-3xl border-2 w-12 h-12 text-center rounded-md flex items-center cursor-pointer  justify-center shadow-lg duration-500 ease-in-out hover:bg-white hover:text-black hover:font-bold '>Z</h2>
+       <p className='text-xl'>Scale mesh on Z axis</p>
+      </div>
+
+    </div>
+
+    <div className='flex flex-col gap-4'>
+     <div className='flex items-center gap-4'>
+       <h2 className='text-3xl border-2 w-12 h-12 text-center rounded-md flex items-center cursor-pointer  justify-center shadow-lg duration-500 ease-in-out hover:bg-white hover:text-black hover:font-bold '>T</h2>
+       <p className='text-xl'>Back to normal</p>
+      </div>
+
+      <div className='flex items-center gap-4'>
+       <h2 className='text-3xl border-2 w-12 h-12 text-center rounded-md flex items-center cursor-pointer  justify-center shadow-lg duration-500 ease-in-out hover:bg-white hover:text-black hover:font-bold '>0</h2>
+       <p className='text-xl'>Initial position</p>
+      </div>
+
+      <div className='flex items-center gap-4'>
+       <h2 className='text-3xl border-2 w-12 h-12 text-center rounded-md flex items-center cursor-pointer  justify-center shadow-lg duration-500 ease-in-out hover:bg-white hover:text-black hover:font-bold '>S</h2>
+       <p className='text-xl'>Scale on all axis</p>
+      </div>
+
+    </div>
+    </div>
+
+    <div className='absolute top-56 right-36'>
+      <ArrowBack sx={{fontSize: '50px'}} className=' border-2 w-12 h-12 text-center rounded-md flex items-center cursor-pointer  justify-center shadow-lg duration-500 ease-in-out hover:bg-white hover:text-black hover:font-bold'  />
+      <ArrowDownward sx={{fontSize: '50px'}} className=' ml-4 border-2 w-12 h-12 text-center rounded-md flex items-center cursor-pointer  justify-center shadow-lg duration-500 ease-in-out hover:bg-white hover:text-black hover:font-bold' />
+      <ArrowForward  sx={{fontSize: '50px'}} className=' ml-4 border-2 w-12 h-12 text-center rounded-md flex items-center cursor-pointer  justify-center shadow-lg duration-500 ease-in-out hover:bg-white hover:text-black hover:font-bold' />
+      <ArrowUpward   sx={{fontSize: '50px'}} className=' absolute bottom-16 left-12 ml-5 border-2 w-12 h-12 text-center rounded-md flex items-center cursor-pointer  justify-center shadow-lg duration-500 ease-in-out hover:bg-white hover:text-black hover:font-bold' />
+   
+    </div>
+    <p className='absolute bottom-12 right-32'>Move mesh on X, Y, and Z axis</p>
+ 
+  </div>}
     </div>
   )
 }
