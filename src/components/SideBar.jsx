@@ -1,5 +1,5 @@
 
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import React, { useContext,  useEffect,  useRef, useState } from 'react'
 import cube from '../assets/cube.png';
 import square from '../assets/square.png';
 import sphere from '../assets/sphere.png';
@@ -12,7 +12,8 @@ import Grid3x3Icon from '@mui/icons-material/Grid3x3';
 import { useScreenshot } from 'use-react-screenshot';
 import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
-import { ArrowBack, ArrowDownward, ArrowForward, ArrowLeft, ArrowUpward } from '@mui/icons-material';
+import { ArrowBack, ArrowDownward, ArrowForward,  ArrowUpward } from '@mui/icons-material';
+
 
 
 
@@ -152,6 +153,26 @@ const downloadImg = () => {
 
  // shortcuts
  const [shortcut, setShortcut] = useState(false);
+ const [banner, setBanner] = useState(true);
+
+ // close on outside click
+ let bannerRef = useRef(null);
+
+ useEffect(() => {
+    
+    const detectClick = (e) => {
+      if(bannerRef.current && !bannerRef.current.contains(e.target)) {
+         setBanner(false);
+      }
+    }
+  
+
+   document.body.addEventListener('click', detectClick);
+
+   return () => {
+    document.body.removeEventListener('click', detectClick);
+   }
+ }, [])
 
   return (
 <div className='absolute top-0 left-0 bg-[#435055] opacity-100   text-white w-full p-2 flex '>
@@ -368,6 +389,19 @@ const downloadImg = () => {
     <p className='absolute bottom-12 right-32'>Move mesh on X, Y, and Z axis</p>
  
   </div>}
+
+{banner && 
+    <div className='absolute  bg-black pb-12  gap-24 rounded-md  mt-36  ml-72 select-none' ref={bannerRef}>
+     <img src = "./logo.png" className='  ' style={{width: '600px', height: '300px', objectFit: 'fill'}}/>
+     <h1 className='text-white text-2xl text-center pt-8'>Welcome to MixMaster</h1>
+    <div className='flex gap-4 pt-8 justify-center'>
+      <span className='text-xl'>Language: </span>
+      
+        <Button variant='contained' size='small'>English</Button>
+        <Button variant="outlined"  size='small'>Georgian</Button>
+        </div>
+     </div>
+}
     </div>
   )
 }
