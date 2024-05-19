@@ -9,7 +9,7 @@
 
 ### this is a front end project, 3d software, where you can modify mesh, interact with 3d text and more. ###
 
-**Technologies used:**
+#Technologies used:#
 - React three fiber
 - tailwind.css
 - react-use
