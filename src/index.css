@@ -5,16 +5,32 @@
 
 @import url("//cdn.web-fonts.ge/fonts/arial-geo/css/arial-geo.min.css");
 
+
+
 .App {
     position: fixed;
     top: 0;
     left: 0;
     width: 80%;
-    height: 100%;
+    height: 110%;
     background-color: #636363;
     user-select: none;                         
     font-family: "Arial GEO", sans-serif;
+  
 
+}
+
+.warning {
+  width: 100%;
+  height:100vh;
+  background-color: black;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  text-align: center;
+  padding: 4px;
 }
 
 
@@ -25,16 +41,16 @@ body {
 }
 
 .textureModal::-webkit-scrollbar {
-   width: 10px;
-}
-
-.textureModal::-webkit-scrollbar-track {
-    background: #000;
+    width: 10px;
  }
- .textureModal::-webkit-scrollbar-thumb {
-   background-color: #192854;
-   border-radius: 5px;
- }
+ 
+ .textureModal::-webkit-scrollbar-track {
+     background: #000;
+  }
+  .textureModal::-webkit-scrollbar-thumb {
+    background-color: #192854;
+    border-radius: 5px;
+  }
 
  .active {
     background-color: green;
